@@ -28,10 +28,16 @@ shift + alt - o: ~/.config/skhd/organize.sh
 # shift + alt - right: yabai -m window --swap east
 
 # move window and split
-# ctrl + alt - j: yabai -m window --warp south
-# ctrl + alt - k: yabai -m window --warp north
-# ctrl + alt - h: yabai -m window --warp west
-# ctrl + alt - l: yabai -m window --warp east
+# shift + alt - down: yabai -m window --warp south
+# shift + alt - up: yabai -m window --warp north
+# shift + alt - left: yabai -m window --warp west
+# shift + alt - right: yabai -m window --warp east
+
+# move windows within and across displays
+shift + alt - h : yabai -m window --swap west || $(yabai -m window --display west; yabai -m display --focus west)
+shift + alt - j : yabai -m window --swap south || $(yabai -m window --display south; yabai -m display --focus south)
+shift + alt - k : yabai -m window --swap north || $(yabai -m window --display north; yabai -m display --focus north)
+shift + alt - l : yabai -m window --swap east || $(yabai -m window --display east; yabai -m display --focus east)
 
 # move window to display left and right
 # shift + alt - s: yabai -m window --display west; yabai -m display --focus west;
@@ -71,7 +77,7 @@ shift + alt - 6: yabai -m window --space 6;
 shift + alt - 7: yabai -m window --space 7;
 
 # stop/start/restart yabai
-ctrl + alt - q: yabai --stop-service
+shift + alt - q: yabai --stop-service
 ctrl + alt - s: yabai --start-service
 ctrl + alt - r: yabai --restart-service
 

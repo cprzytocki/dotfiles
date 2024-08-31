@@ -35,9 +35,10 @@ yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Karabiner-Elements$" manage=off
 yabai -m rule --add app="^Zoom$" manage=off
 yabai -m rule --add app="^OpenVPN Connect$" manage=off
-yabai -m rule --add app="^Facetime$" manage=off
+yabai -m rule --add app="^FaceTime$" manage=off
 yabai -m rule --add app="^Messages$" manage=off
 yabai -m rule --add app="^1Password$" manage=off
+yabai -m rule --add app="^Shottr$" manage=off
 
 
 # Can't get to work yet, disable mac safe thing
