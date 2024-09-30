@@ -10,7 +10,7 @@ config.font = wezterm.font("MesloLGS Nerd Font Mono")
 config.font_size = 16
 config.enable_tab_bar = true
 config.window_decorations = "RESIZE"
-config.window_background_opacity = 0.5
+config.window_background_opacity = 0.8
 config.macos_window_background_blur = 20
 
 -- tab bar

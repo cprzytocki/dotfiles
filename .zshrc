@@ -1,6 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-# [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -8,55 +5,61 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Plugin Manager
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
-# export GRADLE_HOME=$(ls -d /usr/local/Cellar/gradle/*/libexec | tail -n 1)
-export VAGRANT_CWD=~/workspace/devlocal
-. $(brew --prefix asdf)/libexec/asdf.sh
-export NPM_TOKEN=$(uf config --get npm.token)
-export DEVLOCAL_SYNC=skip
-export AWS_PROFILE=stg1
-export DEVLOCAL_SYNC=skip
-export RDS=mygazines2
-export MYSQL_USER=devsread
-export MGMT_HOST=$(aws ec2 describe-instances \
-    --filters "Name=tag:Role,Values=rds-mgmt" "Name=instance-state-name,Values=running"\
-    --query '["Reservations"][0][0].Instances[0].InstanceId' \
-  --output text);
+# Plugins
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
 
-# Alias'
-alias rds='sh ~/workspace/scripts/databases/rds-connect.sh'
-alias vu='vagrant up'
-alias vssh='vagrant ssh'
-alias vd='vagrant destroy -f'
-alias sso='aws sso login'
-alias pb='cd /users/chrisprzytocki/workspace/page-builder-ui && tmux new-session \; split-window -v \; send-keys "cd builder && make start" Enter \; selectp -t 0 \; send-keys "cd api && make start" Enter \; split-window -h \; send-keys "cd frontend && make start" Enter \; attach'
-# ---- Eza (better ls) -----
-alias ls="eza --icons=always"
-# ---- Zoxide (better cd) ----
-eval "$(zoxide init zsh)"
-alias cd="z"
-# alias fd="cd ~ && code $(fzf)"
+# Load completions
+autoload -U compinit && compinit
 
-alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
-
-source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+zinit cdreplay -q
 
 # history setup
+HISTSIZE=5000
 HISTFILE=$HOME/.zhistory
-SAVEHIST=1000
-HISTSIZE=999
-setopt share_history
-setopt hist_expire_dups_first
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
 setopt hist_ignore_dups
-setopt hist_verify
+setopt hist_find_no_dups
 
 # completion using arrow keys (based on history)
 bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
+
+# Completion styling
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+--color=selected-bg:#45475a \
+--multi"
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:*' fzf-flags $(echo $FZF_DEFAULT_OPTS)
+
+# ---- Eza (better ls) -----
+alias ls="eza -a --icons=always"
+# ---- Zoxide (better cd) ----
+eval "$(zoxide init zsh)"
+alias cd="z"
+
+# # Set up fzf key bindings and fuzzy completion
+eval "$(fzf --zsh)"
 
 # select keys back and forth
 bindkey "^[[1;3C" forward-word
@@ -64,17 +67,25 @@ bindkey "^[[1;3D" backward-word
 #  Command backspace
 bindkey '^[[3;5~' backward-kill-line
 
-autoload -U compinit; compinit
-eval "$(fzf --zsh)"
-source ~/.zsh_fzf-tab/fzf-tab.plugin.zsh
+# VISORY
+alias sso="aws sso login --profile VisoryDev"
+alias migrate-workflow-designs-dry="npm run migration:local workflowDesigns/migrate-workflow-designs.ts > '$(date +"%Y_%m_%d-%HH_%M")_dry.log'"
+alias migrate-workflow-designs-live="npm run migration:local workflowDesigns/migrate-workflow-designs.ts > '$(date +"%Y_%m_%d-%HH_%M")_live.log'"
+alias clean="npm run clean ; npm run build:libraries ; npm i"
 
-# zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-# zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-# zstyle ':completion:*' menu no
-# zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+# python
+export PATH="/Users/christopherprzytocki/Library/Python/3.10/bin:$PATH"
 
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# bun
+# bun completions
+[ -s "/Users/christopherprzytocki/.bun/_bun" ] && source "/Users/christopherprzytocki/.bun/_bun"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
-# Fig post block. Keep at the bottom of this file.
-# [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+# NODE PACKAGE MANAGER
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
