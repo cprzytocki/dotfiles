@@ -7,11 +7,12 @@ local config = wezterm.config_builder()
 -- This is where you actually apply your config choices
 config.color_scheme = 'Catppuccin Mocha'
 config.font = wezterm.font("MesloLGS Nerd Font Mono")
-config.font_size = 16
+config.font_size = 10
 config.enable_tab_bar = true
-config.window_decorations = "RESIZE"
+-- config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.8
 config.macos_window_background_blur = 20
+config.enable_wayland = true
 
 -- tab bar
 config.hide_tab_bar_if_only_one_tab = true  
