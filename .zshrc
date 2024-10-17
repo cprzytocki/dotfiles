@@ -68,7 +68,7 @@ bindkey "^[[1;3D" backward-word
 bindkey '^[[3;5~' backward-kill-line
 
 # VISORY
-alias sso="aws sso login --profile VisoryDev"
+alias sso="BROWSER=microsoft-edge-stable aws sso login --profile VisoryDev"
 alias migrate-workflow-designs-dry="npm run migration:local workflowDesigns/migrate-workflow-designs.ts > '$(date +"%Y_%m_%d-%HH_%M")_dry.log'"
 alias migrate-workflow-designs-live="npm run migration:local workflowDesigns/migrate-workflow-designs.ts > '$(date +"%Y_%m_%d-%HH_%M")_live.log'"
 alias clean="npm run clean ; npm run build:libraries ; npm i"
@@ -88,4 +88,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
