@@ -67,10 +67,12 @@ bindkey "^[[1;3D" backward-word
 #  Command backspace
 bindkey '^[[3;5~' backward-kill-line
 
+# Rebase onto alias 
+alias rebase-onto="~/.config/scripts/rebase-onto.sh"
+
 # VISORY
-alias sso="BROWSER=microsoft-edge-stable aws sso login --profile VisoryDev"
-alias migrate-workflow-designs-dry="npm run migration:local workflowDesigns/migrate-workflow-designs.ts > '$(date +"%Y_%m_%d-%HH_%M")_dry.log'"
-alias migrate-workflow-designs-live="npm run migration:local workflowDesigns/migrate-workflow-designs.ts > '$(date +"%Y_%m_%d-%HH_%M")_live.log'"
+alias sso="aws sso login --profile VisoryDev"
+# alias sso="BROWSER=microsoft-edge-stable aws sso login --profile VisoryDev"
 alias clean="npm run clean ; npm run build:libraries ; npm i"
 
 # python
@@ -89,3 +91,11 @@ export NVM_DIR="$HOME/.nvm"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
+
+# Load Angular CLI autocompletion. if not using angular (yuck) then remove this
+source <(ng completion script)
+
+PATH=~/.console-ninja/.bin:$PATH
+
+export AWS_PROFILE=VisoryDev
+export AWS_REGION=ap-southeast-2

@@ -20,16 +20,19 @@ config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.show_new_tab_button_in_tab_bar = false
 
+-- scroll amount doesnt work wtf
+-- alternate_buffer_wheel_scroll_speed = 1
+
 local action = wezterm.action
 config.keys = {
     -- naturtal text editting
 	{ mods = "OPT", key = "LeftArrow", action = action.SendKey({ mods = "ALT", key = "b" }) },
 	{ mods = "OPT", key = "RightArrow", action = action.SendKey({ mods = "ALT", key = "f" }) },
-	{ mods = "CMD", key = "LeftArrow", action = action.SendKey({ mods = "CTRL", key = "a" }) },
-	{ mods = "CMD", key = "RightArrow", action = action.SendKey({ mods = "CTRL", key = "e" }) },
-	{ mods = "CMD", key = "Backspace", action = action.SendKey({ mods = "CTRL", key = "u" }) },
-	{ mods = 'CMD', key = 'k',  action = action.ClearScrollback('ScrollbackAndViewport') },
-
+	-- change to "CMD" for macos
+	{ mods = "CTRL", key = "LeftArrow", action = action.SendKey({ mods = "CTRL", key = "a" }) },
+	{ mods = "CTRL", key = "RightArrow", action = action.SendKey({ mods = "CTRL", key = "e" }) },
+	{ mods = "CTRL", key = "Backspace", action = action.SendKey({ mods = "CTRL", key = "u" }) },
+	{ mods = 'CTRL', key = 'k',  action = action.ClearScrollback('ScrollbackAndViewport') },
 }
 -- and finally, return the configuration to wezterm
 return config
