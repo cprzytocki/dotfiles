@@ -1,3 +1,6 @@
-Command `stow .` to symlink files to my parent directory.
+
+`cd ~/dotfiles`
+
+`stow .` to symlink repo files to parent directory.
 
 https://tamerlan.dev/how-i-manage-my-dotfiles-using-gnu-stow/
