@@ -61,12 +61,6 @@ alias cd="z"
 # # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
 
-# select keys back and forth
-bindkey "^[[1;3C" forward-word
-bindkey "^[[1;3D" backward-word
-#  Command backspace
-bindkey '^[[3;5~' backward-kill-line
-
 # Rebase onto alias 
 alias rebase-onto="~/.config/scripts/rebase-onto.sh"
 
