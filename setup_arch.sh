@@ -15,7 +15,7 @@
 # zsh-theme-powerlevel10k-git r4296.0996a941-1
 
 sudo pacman -S stow nodejs-lts-jod git zoxide eza fzf helix lazygit yazi
-yay -S aws-sam-cli-bin cursor-bin google-chrome helix-git intune-portal-bin microsoft-edge-stable-bin microsoft-identity-broker-bin qdirstat-bin sherlock-launcher-bin teams-for-linux vesktop wezterm-git zen-browser-bin zsh-theme-powerlevel10k-git 
+yay -S xorg-xhost aws-sam-cli-bin cursor-bin google-chrome helix-git intune-portal-bin microsoft-edge-stable-bin microsoft-identity-broker-bin qdirstat-bin sherlock-launcher-bin teams-for-linux vesktop wezterm-git zen-browser-bin zsh-theme-powerlevel10k-git 
 
 npm install -g @angular/cli@19
 
