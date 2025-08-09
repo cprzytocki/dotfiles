@@ -1,17 +1,16 @@
-# The syntax is "key = value". The whitespace around the
-# equals doesn't matter.
-# background = 282c34
-# foreground = ffffff
-
-# Comments start with a `#` and are only valid on their own line.
-# Blank lines are ignored!
-
-# keybind = ctrl+z=close_surface
-# keybind = ctrl+d=new_split:right
-
-font-size = 16
+font-size = 12
 font-family = MesloLGS Nerd Font Mono
+window-padding-y = 10,4
 window-padding-x = 10,4
 background-opacity = 0.8
 background-blur = 20
 theme = catppuccin-mocha
+
+keybind = ctrl+left=text:\x01
+keybind = ctrl+right=text:\x05
+keybind = alt+backspace=text:\x17
+keybind = alt+left=text:\x1b\x62
+keybind = alt+right=text:\x1b\x66
+keybind = ctrl+backspace=text:\x15
+
+# scrollback-limit = 10_000
