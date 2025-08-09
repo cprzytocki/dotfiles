@@ -1,0 +1,66 @@
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+echo >> /Users/cprzytocki/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/cprzytocki/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+brew update
+brew upgrade
+
+brew install stow
+brew install node
+brew install git
+brew install zoxide
+brew install eza
+brew install fzf
+
+brew install --cask font-meslo-lg-nerd-font
+brew install --cask zen
+brew install --cask cursor
+brew install --cask wezterm
+brew install --cask google-chrome
+brew install --cask karabiner-elements
+brew install --cask raycast
+brew install --cask zed
+brew install --cask ghostty
+brew install --cask fork
+brew install --cask microsoft-teams
+
+npm install -g @angular/cli@19
+
+# install dotfiles
+git clone https://github.com/cprzytocki/dotfiles.git
+cd dotfiles
+stow . 
+
+git config --global user.name "Chris Przytocki"
+git config --global user.email "cprzytocki@gmail.com"
+
+# install aws cli, need rosetta on mac
+sudo softwareupdate --install-rosetta
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+sudo installer -pkg AWSCLIV2.pkg -target /
+
+# install from https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html
+# then
+sudo installer -pkg Downloads/aws-sam-cli-macos-arm64.pkg -target /
+
+# npm login , get password from PAT classic token, its saved in mac passwords app
+npm login --scope=@visoryplatform --auth-type=legacy --registry=https://npm.pkg.github.com
+
+
+
+aws configure sso
+# SSO session name: eg. my-sso
+# SSO start URL [None]: [None]: https://findex.awsapps.com/start
+# SSO region [None]: ap-southeast-2
+# SSO registration scopes [sso:account:access]: <hit enter>
+
+# NOTE: will open a browser window with a code to authorise the request, then select account
+
+# CLI default client Region [None]: <hit enter>
+# CLI default output format [None]: <hit enter>
+# CLI profile name [visory-power-user-*****]: VisoryDev
+
+# NOTE: profile name should be VisoryDev
