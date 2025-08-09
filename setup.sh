@@ -32,13 +32,13 @@ brew install --cask microsoft-teams
 
 npm install -g @angular/cli@19
 
+git config --global user.name "Chris Przytocki"
+git config --global user.email "cprzytocki@gmail.com"
+
 # install dotfiles
 git clone https://github.com/cprzytocki/dotfiles.git
 cd dotfiles
 stow . 
-
-git config --global user.name "Chris Przytocki"
-git config --global user.email "cprzytocki@gmail.com"
 
 # install aws cli, need rosetta on mac
 sudo softwareupdate --install-rosetta
@@ -51,8 +51,6 @@ sudo installer -pkg Downloads/aws-sam-cli-macos-arm64.pkg -target /
 
 # npm login , get password from PAT classic token, its saved in mac passwords app
 npm login --scope=@visoryplatform --auth-type=legacy --registry=https://npm.pkg.github.com
-
-
 
 aws configure sso
 # SSO session name: eg. my-sso
@@ -67,3 +65,16 @@ aws configure sso
 # CLI profile name [visory-power-user-*****]: VisoryDev
 
 # NOTE: profile name should be VisoryDev
+
+# repos
+cd ~ && mkdir workspace && cd workspace
+git clone https://github.com/VisoryPlatform/portal.git; 
+git clone https://github.com/VisoryPlatform/findex-notifications-service.git; 
+git clone https://github.com/VisoryPlatform/calendar-booking-backend.git; 
+git clone https://github.com/VisoryPlatform/payments-service.git; 
+git clone https://github.com/VisoryPlatform/insights-backend.git; 
+git clone https://github.com/VisoryPlatform/findex-auth-backend.git; 
+git clone https://github.com/VisoryPlatform/threads-vault-backend; 
+git clone https://github.com/VisoryPlatform/metric-connectors.git; 
+git clone https://github.com/VisoryPlatform/video-chat-sdk.git 
+
