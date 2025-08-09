@@ -14,6 +14,9 @@ brew install git
 brew install zoxide
 brew install eza
 brew install fzf
+brew install helix
+brew install lazygit
+brew install yazi
 
 brew install --cask font-meslo-lg-nerd-font
 brew install --cask zen
