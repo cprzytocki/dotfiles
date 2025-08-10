@@ -1,0 +1,46 @@
+# theme = "custom_catppuccin_mocha"
+theme = "catppuccin_mocha"
+
+[editor]
+auto-format = true
+line-number = "relative"
+mouse = true
+bufferline = "multiple"
+color-modes = true
+true-color = true #fix colours over ssh
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[keys.normal]
+"{" = ["goto_prev_paragraph"]
+"}" = ["goto_next_paragraph"]
+esc = ["collapse_selection", "keep_primary_selection"]
+# lazy git integration
+C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+# yazi integration
+C-e = [
+  ':sh rm -f /tmp/unique-file',
+  ':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
+  ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/unique-file}',
+  ':redraw',
+]
+# "C-[" = ["jump_backward"] figure out why these 2 don't work
+# "C-]" = ["jump_forward"]
+"C-s" = [":write"]
+"C-w" = [":buffer-close"]
+# [keys.movement]
+
+[keys.select]
+"{" = ["goto_prev_paragraph"]
+"}" = ["goto_next_paragraph"]
+
+[keys.normal."space"]
+"<" = "file_picker_in_current_buffer_directory"
+
+# [editor.inline-diagnostics]
+# "cursor-line" = "warning"
+# "other-lines" = "error"
