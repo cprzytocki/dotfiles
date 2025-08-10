@@ -16,7 +16,9 @@
 
 mise use -g node@lts
 sudo pacman -S stow helix yazi
-yay -S seahorse ghostty aws-cli-bin aws-sam-cli-bin cursor-bin google-chrome intune-portal-bin microsoft-edge-stable-bin microsoft-identity-broker-bin qdirstat-bin teams-for-linux vesktop zen-browser-bin zsh-theme-powerlevel10k-git 
+yay -S seahorse gparted timeshift xorg-xhost ghostty aws-cli-bin aws-sam-cli-bin cursor-bin google-chrome intune-portal-bin microsoft-edge-stable-bin microsoft-identity-broker-bin qdirstat-bin teams-for-linux vesktop zen-browser-bin zsh-theme-powerlevel10k-git 
+
+xhost +local:
 
 # run seahorse
 # Install seahorse, create a "password keyring". You MUST set a password (because of a known bug mentioned above) and then set it as default.
@@ -60,7 +62,7 @@ npm install -g @angular/cli@19
 # install dotfiles
 git clone https://github.com/cprzytocki/dotfiles.git
 cd dotfiles
-stow . 
+stow omarchy
 
 
 # npm login , get password from PAT classic token, its saved in mac passwords app
