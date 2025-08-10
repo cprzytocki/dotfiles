@@ -16,7 +16,7 @@
 
 mise use -g node@lts
 sudo pacman -S stow helix yazi
-yay -S seahorse aws-cli-bin aws-sam-cli-bin cursor-bin google-chrome intune-portal-bin microsoft-edge-stable-bin microsoft-identity-broker-bin qdirstat-bin teams-for-linux vesktop zen-browser-bin zsh-theme-powerlevel10k-git 
+yay -S seahorse ghostty aws-cli-bin aws-sam-cli-bin cursor-bin google-chrome intune-portal-bin microsoft-edge-stable-bin microsoft-identity-broker-bin qdirstat-bin teams-for-linux vesktop zen-browser-bin zsh-theme-powerlevel10k-git 
 
 # run seahorse
 # Install seahorse, create a "password keyring". You MUST set a password (because of a known bug mentioned above) and then set it as default.
@@ -36,7 +36,9 @@ yay -S seahorse aws-cli-bin aws-sam-cli-bin cursor-bin google-chrome intune-port
 # VERSION_CODENAME=focal
 # UBUNTU_CODENAME=focal
 
-
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# @@@@WARNING: THIS WILL BRICK THE THE SYSTEM, REVERT OPENSSL BACK TO PREVIOUS VERSION AFTER THIS IS DONE@@@@@@@
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 # I had to downgrade openssl to 3.3.2 to get over an error displayed on the GUI. I don't know how we can re-conciliate Arch Linux & Intune requiring different versions of openssl.
 # Details
 # I had the following error printed on a windows after signing in, before checking policies:
@@ -45,8 +47,12 @@ yay -S seahorse aws-cli-bin aws-sam-cli-bin cursor-bin google-chrome intune-port
 # Using the Arch Linux archive of openssl: https://archive.archlinux.org/packages/o/openssl/ , I downgraded to 3.3.2 to get over it. 3.4.0 was made available on Arch Linux on October 23rd 2024.
 
 sudo pacman -U https://archive.archlinux.org/packages/o/openssl/openssl-3.3.2-1-x86_64.pkg.tar.zst
+# REMINDER: REVERT OPENSSL BACK TO PREVIOUS VERSION AFTER THIS IS DONE
 
 # run microsoft intune
+
+# GETTING FIREFOX (ZEN BROWSER) TO WORK FOR SSO
+# https://github.com/siemens/linux-entra-sso
 
 npm install -g @angular/cli@19
 
@@ -73,6 +79,7 @@ aws configure sso
 # CLI profile name [visory-power-user-*****]: VisoryDev
 
 # NOTE: profile name should be VisoryDev
+# Do the same for the other profile, VisoryProd
 
 # repos
 cd ~ && mkdir workspace && cd workspace
