@@ -14,8 +14,7 @@
 # zen-browser-bin 1.14.9b-1
 # zsh-theme-powerlevel10k-git r4296.0996a941-1
 
-mise use -g node@lts
-sudo pacman -S stow helix yazi
+sudo pacman -S stow helix yazi nvm
 yay -S seahorse gparted timeshift xorg-xhost ghostty aws-cli-bin aws-sam-cli-bin cursor-bin google-chrome intune-portal-bin microsoft-edge-stable-bin microsoft-identity-broker-bin qdirstat-bin teams-for-linux vesktop zen-browser-bin zsh-theme-powerlevel10k-git 
 
 xhost +local:
@@ -56,6 +55,8 @@ sudo pacman -U https://archive.archlinux.org/packages/o/openssl/openssl-3.3.2-1-
 # GETTING FIREFOX (ZEN BROWSER) TO WORK FOR SSO
 # https://github.com/siemens/linux-entra-sso
 
+. /usr/share/nvm/init-nvm.sh
+nvm install 22.12.0 --default    
 npm install -g @angular/cli@19
 
 
@@ -95,3 +96,5 @@ git clone https://github.com/VisoryPlatform/threads-vault-backend;
 git clone https://github.com/VisoryPlatform/metric-connectors.git; 
 git clone https://github.com/VisoryPlatform/video-chat-sdk.git 
 
+
+# Swap file https://wiki.archlinux.org/title/Swap
