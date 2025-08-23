@@ -1,5 +1,5 @@
-# theme = "custom_catppuccin_mocha"
-theme = "catppuccin_mocha"
+theme = "custom_catppuccin_mocha"
+# theme = "catppuccin_mocha"
 
 [editor]
 auto-format = true
@@ -18,8 +18,6 @@ select = "underline"
 "{" = ["goto_prev_paragraph"]
 "}" = ["goto_next_paragraph"]
 esc = ["collapse_selection", "keep_primary_selection"]
-# lazy git integration
-C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
 # yazi integration
 C-e = [
   ':sh rm -f /tmp/unique-file',
@@ -28,11 +26,8 @@ C-e = [
   ':open %sh{cat /tmp/unique-file}',
   ':redraw',
 ]
-# "C-[" = ["jump_backward"] figure out why these 2 don't work
-# "C-]" = ["jump_forward"]
-"C-s" = [":write"]
-"C-w" = [":buffer-close"]
-# [keys.movement]
+# Lazygit integration
+"C-g" = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
 
 [keys.select]
 "{" = ["goto_prev_paragraph"]
@@ -42,5 +37,8 @@ C-e = [
 "<" = "file_picker_in_current_buffer_directory"
 
 # [editor.inline-diagnostics]
-# "cursor-line" = "warning"
-# "other-lines" = "error"
+# "cursor-line" = "disable"
+# "other-lines" = "disable"
+
+# [editor.lsp]
+# display-messages = true
