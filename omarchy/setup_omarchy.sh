@@ -14,10 +14,13 @@
 # zen-browser-bin 1.14.9b-1
 # zsh-theme-powerlevel10k-git r4296.0996a941-1
 
-sudo pacman -S stow helix yazi nvm
+sudo pacman -S stow helix yazi nvm tmux
 yay -S seahorse gparted timeshift xorg-xhost ghostty aws-cli-bin aws-sam-cli-bin cursor-bin google-chrome intune-portal-bin microsoft-edge-stable-bin microsoft-identity-broker-bin qdirstat-bin teams-for-linux vesktop zen-browser-bin zsh-theme-powerlevel10k-git 
 
 xhost +local:
+
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm 
 
 # run seahorse
 # Install seahorse, create a "password keyring". You MUST set a password (because of a known bug mentioned above) and then set it as default.
