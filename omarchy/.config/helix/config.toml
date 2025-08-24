@@ -2,7 +2,7 @@ theme = "custom_catppuccin_mocha"
 # theme = "catppuccin_mocha"
 
 [editor]
-auto-format = true
+# auto-format = true
 line-number = "relative"
 mouse = true
 bufferline = "multiple"
@@ -28,11 +28,6 @@ C-e = [
   ':open %sh{cat /tmp/unique-file}',
   ':redraw',
 ]
-# "C-[" = ["jump_backward"] figure out why these 2 don't work
-# "C-]" = ["jump_forward"]
-"C-s" = [":write"]
-"C-w" = [":buffer-close"]
-# [keys.movement]
 
 [keys.select]
 "{" = ["goto_prev_paragraph"]

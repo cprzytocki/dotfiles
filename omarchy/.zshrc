@@ -96,3 +96,4 @@ PATH=~/.console-ninja/.bin:$PATH
 
 export AWS_PROFILE=VisoryDev
 export AWS_REGION=ap-southeast-2
+export NODE_MODULES_GLOBAL="$(npm root -g)"
