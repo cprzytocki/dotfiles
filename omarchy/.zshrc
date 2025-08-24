@@ -53,7 +53,8 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:*' fzf-flags $(echo $FZF_DEFAULT_OPTS)
 # HELIX
 alias hx="helix"
-
+# Lazygit
+alias lg="lazygit"
 # ---- Eza (better ls) -----
 alias ls="eza -a --icons=always"
 # ---- Zoxide (better cd) ----
