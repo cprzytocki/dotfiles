@@ -1,5 +1,5 @@
 [default_session]
-startup_command = "hx ."
+startup_command = "cd {} && hx ."
 preview_command = "eza --all --git --icons --color=always {}"
 
 [[session]]
@@ -9,6 +9,5 @@ startup_command = "ls"
 
 [[session]]
 name = "tmux config"
-path = "~/c/dotfiles/.config/tmux"
-startup_command = "nvim tmux.conf"
+startup_command = "cd ~/dotfiles/omarchy && hx .tmux.conf"
 preview_command = "bat --color=always ~/c/dotfiles/.config/tmux/tmux.conf"
