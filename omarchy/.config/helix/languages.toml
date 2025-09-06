@@ -1,3 +1,12 @@
+[language-server.gpt]
+command = "helix-gpt"
+args = [
+  "--handler",
+  "copilot",
+  "--copilotApiKey",
+  #"ghu_.."
+]
+
 [language-server.angular-ls]
 command = "ngserver"
 
@@ -14,12 +23,18 @@ file-types = ["ts", "typescript", "html"]
 
 [[language]]
 name = "typescript"
-language-servers = ["angular-ls", "typescript-language-server"]
+language-servers = ["angular-ls", "typescript-language-server", "gpt"]
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
 
 [[language]]
 name = "html"
-language-servers = ["angular-ls", "vscode-html-language-server"]
+language-servers = ["angular-ls", "vscode-html-language-server", "gpt"]
 formatter = { command = 'prettier', args = ["--parser", "angular"] }
+auto-format = true
+
+[[language]]
+name = "scss"
+language-servers = ["typescript-language-server", "gpt"]
+formatter = { command = 'prettier', args = ["--parser", "scss"] }
 auto-format = true
