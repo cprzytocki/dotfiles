@@ -40,20 +40,11 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # VERSION_CODENAME=focal
 # UBUNTU_CODENAME=focal
 
-# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-# @@@@WARNING: THIS WILL BRICK THE THE SYSTEM, REVERT OPENSSL BACK TO PREVIOUS VERSION AFTER THIS IS DONE@@@@@@@
-# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-# I had to downgrade openssl to 3.3.2 to get over an error displayed on the GUI. I don't know how we can re-conciliate Arch Linux & Intune requiring different versions of openssl.
-# Details
-# I had the following error printed on a windows after signing in, before checking policies:
-# error:05880106:x509 certificate routines:X509_REQ_set_version:passed invalid argument:crypto/x509/x509rset.c:21
-# which looked like it came from openssl: https://github.com/openssl/openssl/blob/ea5817854cf67b89c874101f209f06ae016fd333/crypto/x509/x509rset.c#L18
-# Using the Arch Linux archive of openssl: https://archive.archlinux.org/packages/o/openssl/ , I downgraded to 3.3.2 to get over it. 3.4.0 was made available on Arch Linux on October 23rd 2024.
+https://github.com/recolic/microsoft-intune-archlinux?tab=readme-ov-file
+[Temporary Fix] Run fix-libssl.sh and follow instructions.sudo
 
-sudo pacman -U https://archive.archlinux.org/packages/o/openssl/openssl-3.3.2-1-x86_64.pkg.tar.zst
-# REMINDER: REVERT OPENSSL BACK TO PREVIOUS VERSION AFTER THIS IS DONE
-
-# run microsoft intune
+#  run microsoft intune
+env LD_PRELOAD=/usr/lib/libcrypto-332.so:/usr/lib/libssl-332.so /opt/microsoft/intune/bin/intune-portal
 
 # GETTING FIREFOX (ZEN BROWSER) TO WORK FOR SSO
 # https://github.com/siemens/linux-entra-sso
