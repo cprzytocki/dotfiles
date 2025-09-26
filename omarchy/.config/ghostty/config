@@ -4,7 +4,7 @@ window-padding-y = 10,4
 window-padding-x = 10,4
 background-opacity = 0.8
 background-blur = 20
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 
 keybind = ctrl+left=text:\x01
 keybind = ctrl+right=text:\x05
