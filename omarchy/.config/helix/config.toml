@@ -28,6 +28,10 @@ C-e = [
   ':open %sh{cat /tmp/unique-file}',
   ':redraw',
 ]
+"C-A-c" = [
+  ":echo %sh{echo '%{buffer_name}' | wl-copy}",
+  ":echo Copied %{buffer_name}"
+]
 "C-A-y" = [
   ":echo %sh{echo 'File: %{buffer_name}, Line Start: %{selection_line_start}, Line End: %{selection_line_end} \n\n %{selection}' | wl-copy}",
   ":echo Copied %{buffer_name} %{selection_line_start} %{selection_line_end} \n\n %{selection}"
@@ -36,6 +40,10 @@ C-e = [
 [keys.select]
 "{" = ["goto_prev_paragraph"]
 "}" = ["goto_next_paragraph"]
+"C-A-c" = [
+  ":echo %sh{echo '%{buffer_name}' | wl-copy}",
+  ":echo Copied %{buffer_name}"
+]
 "C-A-y" = [
   ":echo %sh{echo 'File: %{buffer_name}, Line Start: %{selection_line_start}, Line End: %{selection_line_end} \n\n %{selection}' | wl-copy}",
   ":echo Copied %{buffer_name} %{selection_line_start} %{selection_line_end} \n\n %{selection}"
