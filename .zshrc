@@ -51,8 +51,6 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:*' fzf-flags $(echo $FZF_DEFAULT_OPTS)
-# HELIX
-alias hx="helix"
 
 # ---- Eza (better ls) -----
 alias ls="eza -a --icons=always"
