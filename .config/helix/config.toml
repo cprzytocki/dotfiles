@@ -28,6 +28,10 @@ C-e = [
 ]
 # Lazygit integration
 "C-g" = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+X = ["extend_line_up", "extend_to_line_bounds"]
+C-u = ["half_page_up", "align_view_center"]
+C-d = ["half_page_down", "align_view_center"]
+D = "kill_to_line_end" 
 
 [keys.select]
 "{" = ["goto_prev_paragraph"]
@@ -35,6 +39,13 @@ C-e = [
 
 [keys.normal."space"]
 "<" = "file_picker_in_current_buffer_directory"
+
+[editor.file-picker]
+hidden = false # show hidden files as in starting with a dot
+git-global = false # show files hidden by git globally
+
+[editor.soft-wrap]
+enable = true
 
 # [editor.inline-diagnostics]
 # "cursor-line" = "disable"
