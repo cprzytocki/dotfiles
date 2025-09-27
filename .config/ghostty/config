@@ -13,4 +13,6 @@ keybind = alt+left=text:\x1b\x62
 keybind = alt+right=text:\x1b\x66
 keybind = ctrl+backspace=text:\x15
 
+macos-option-as-alt = true
+
 # scrollback-limit = 10_000
