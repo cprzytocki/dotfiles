@@ -2,7 +2,7 @@ theme = "custom_catppuccin_mocha"
 # theme = "catppuccin_mocha"
 
 [editor]
-auto-format = true
+# auto-format = true
 line-number = "relative"
 mouse = true
 bufferline = "multiple"
@@ -18,6 +18,8 @@ select = "underline"
 "{" = ["goto_prev_paragraph"]
 "}" = ["goto_next_paragraph"]
 esc = ["collapse_selection", "keep_primary_selection"]
+# lazy git integration
+C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
 # yazi integration
 C-e = [
   ':sh rm -f /tmp/unique-file',
@@ -26,16 +28,30 @@ C-e = [
   ':open %sh{cat /tmp/unique-file}',
   ':redraw',
 ]
-# Lazygit integration
-"C-g" = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
 X = ["extend_line_up", "extend_to_line_bounds"]
 C-u = ["half_page_up", "align_view_center"]
 C-d = ["half_page_down", "align_view_center"]
 D = "kill_to_line_end" 
+"C-A-c" = [
+  ":echo %sh{echo '%{buffer_name}' | wl-copy}",
+  ":echo Copied %{buffer_name}"
+]
+"C-A-y" = [
+  ":echo %sh{echo 'File: %{buffer_name}, Line Start: %{selection_line_start}, Line End: %{selection_line_end} \n\n %{selection}' | wl-copy}",
+  ":echo Copied %{buffer_name} %{selection_line_start} %{selection_line_end} \n\n %{selection}"
+]
 
 [keys.select]
 "{" = ["goto_prev_paragraph"]
 "}" = ["goto_next_paragraph"]
+"C-A-c" = [
+  ":echo %sh{echo '%{buffer_name}' | wl-copy}",
+  ":echo Copied %{buffer_name}"
+]
+"C-A-y" = [
+  ":echo %sh{echo 'File: %{buffer_name}, Line Start: %{selection_line_start}, Line End: %{selection_line_end} \n\n %{selection}' | wl-copy}",
+  ":echo Copied %{buffer_name} %{selection_line_start} %{selection_line_end} \n\n %{selection}"
+]
 
 [keys.normal."space"]
 "<" = "file_picker_in_current_buffer_directory"
@@ -44,12 +60,7 @@ D = "kill_to_line_end"
 hidden = false # show hidden files as in starting with a dot
 git-global = false # show files hidden by git globally
 
-[editor.soft-wrap]
-enable = true
 
 # [editor.inline-diagnostics]
-# "cursor-line" = "disable"
-# "other-lines" = "disable"
-
-# [editor.lsp]
-# display-messages = true
+# "cursor-line" = "warning"
+# "other-lines" = "error"

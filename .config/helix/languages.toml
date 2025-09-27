@@ -1,71 +1,40 @@
-[language-server.angular]
+[language-server.gpt]
+command = "helix-gpt"
+args = [
+  "--handler",
+  "copilot",
+  "--copilotApiKey",
+  #"ghu_.."
+]
+
+[language-server.angular-ls]
 command = "ngserver"
-args = [  "--stdio",
-  "--tsProbeLocations",
-  "/opt/homebrew/lib/node_modules/typescript/lib",
+
+args = [
   "--ngProbeLocations",
-  "/opt/homebrew/lib/node_modules/@angular/language-server/bin"
- ]
+  "${$NODE_MODULES_GLOBAL}",
+  "--tsProbeLocations",
+  "${$NODE_MODULES_GLOBAL}",
+  "--stdio",
+  # If this for some reason doesn't work, try replacing ${NODE_MODULES_GLOBAL} with the absolute paths, e.g. output of `npm root -g`
+]
 
-[language-server.stylelint]
-command = "stylelint-lsp"
-args = ["--stdio"]
-
-[language-server.stylelint.config]
-stylelintplus = { autoFixOnFormat = true, autofixOnSave = true }
-
-[language-server.emmet-ls]
-command = "emmet-ls"
-args = ["--stdio"]
-
-# npm i -g vscode-langservers-extracted@v4.8.0
-[language-server.eslint]
-args = ["--stdio"]
-command = "vscode-eslint-language-server"
-
-[language-server.eslint.config]
-format = true
-nodePath = ""
-onIgnoredFiles = "off"
-packageManager = "yarn"
-quiet = false
-rulesCustomizations = []
-run = "onType"
-useESLintClass = false
-validate = "on"
-codeAction = { disableRuleComment = { enable = true, location = "separateLine" }, showDocumentation = { enable = true } }
-codeActionOnSave = { mode = "all" }
-experimental = {}
-problems = { shortenToSingleLine = false }
-workingDirectory = { mode = "auto" }
+file-types = ["ts", "typescript", "html"]
 
 [[language]]
 name = "typescript"
-roots = ["tsconfig.json"]
-formatter = { command = 'prettier', args = [
-  "--write",
-  "--parser",
-  "typescript",
-] }
+language-servers = ["angular-ls", "typescript-language-server", "gpt"]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
-language-servers = ["typescript-language-server", "eslint", "angular"]
-
-[[language]]
-name = "css"
-formatter = { command = 'prettier', args = ["--write", "--parser", "css"] }
-auto-format = true
-language-servers = ["stylelint", "vscode-css-language-server"]
-
-[[language]]
-name = "scss"
-file-types = ["scss"]
-formatter = { command = 'bash', args = ["-c", "npx stylelint --fix 2>&1 | prettier -parser css"] }
-auto-format = true
-language-servers = ["stylelint", {name = "vscode-css-language-server", only-features = ["completion"] }]
 
 [[language]]
 name = "html"
-roots = ["angular.json"]
-formatter = { command = 'prettier', args = ["--write", "--parser", "html"] }
+language-servers = ["angular-ls", "vscode-html-language-server", "gpt"]
+formatter = { command = 'prettier', args = ["--parser", "angular"] }
 auto-format = true
-language-servers = ["angular", "vscode-html-language-server", "emmet-ls"]
+
+[[language]]
+name = "scss"
+language-servers = ["typescript-language-server", "gpt"]
+formatter = { command = 'prettier', args = ["--parser", "scss"] }
+auto-format = true
