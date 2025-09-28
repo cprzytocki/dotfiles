@@ -23,6 +23,8 @@ autoload -U compinit && compinit
 
 zinit cdreplay -q
 
+bindkey -e 
+
 # history setup
 HISTSIZE=5000
 HISTFILE=$HOME/.zhistory
@@ -98,3 +100,4 @@ PATH=~/.console-ninja/.bin:$PATH
 export AWS_PROFILE=VisoryDev
 export AWS_REGION=ap-southeast-2
 export NODE_MODULES_GLOBAL="$(npm root -g)"
+
