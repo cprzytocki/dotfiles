@@ -59,6 +59,7 @@ hidden = true
 
 [builtins.clipboard]
 hidden = true
+max_entries = 1000
 
 [builtins.commands]
 hidden = true
