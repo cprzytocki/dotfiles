@@ -31,6 +31,8 @@ C-e = [
 X = ["extend_line_up", "extend_to_line_bounds"]
 C-u = ["half_page_up", "align_view_center"]
 C-d = ["half_page_down", "align_view_center"]
+C-k = ["half_page_up", "align_view_center"]
+C-j = ["half_page_down", "align_view_center"]
 D = "kill_to_line_end" 
 "C-A-c" = [
   ":echo %sh{echo '%{buffer_name}' | wl-copy}",
