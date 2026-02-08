@@ -57,6 +57,7 @@ alias ls="eza -a --icons=always"
 # ---- Zoxide (better cd) ----
 eval "$(zoxide init zsh)"
 alias cd="z"
+alias lg="lazygit"
 
 # # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
@@ -93,3 +94,5 @@ PATH=~/.console-ninja/.bin:$PATH
 
 export AWS_PROFILE=VisoryDev
 export AWS_REGION=ap-southeast-2
+export EDITOR=hx
+export PATH="$HOME/.local/bin:$PATH"
