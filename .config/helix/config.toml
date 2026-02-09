@@ -33,11 +33,11 @@ C-u = ["half_page_up", "align_view_center"]
 C-d = ["half_page_down", "align_view_center"]
 D = "kill_to_line_end" 
 "C-A-c" = [
-  ":echo %sh{echo '%{buffer_name}' | wl-copy}",
+  ":echo %sh{echo '%{buffer_name}' | pbcopy}",
   ":echo Copied %{buffer_name}"
 ]
 "C-A-y" = [
-  ":echo %sh{echo 'File: %{buffer_name}, Line Start: %{selection_line_start}, Line End: %{selection_line_end} \n\n %{selection}' | wl-copy}",
+  ":echo %sh{echo 'File: %{buffer_name}, Line Start: %{selection_line_start}, Line End: %{selection_line_end} \n\n %{selection}' | pbcopy}",
   ":echo Copied %{buffer_name} %{selection_line_start} %{selection_line_end} \n\n %{selection}"
 ]
 
@@ -45,11 +45,11 @@ D = "kill_to_line_end"
 "{" = ["goto_prev_paragraph"]
 "}" = ["goto_next_paragraph"]
 "C-A-c" = [
-  ":echo %sh{echo '%{buffer_name}' | wl-copy}",
+  ":echo %sh{echo '%{buffer_name}' | pbcopy}",
   ":echo Copied %{buffer_name}"
 ]
 "C-A-y" = [
-  ":echo %sh{echo 'File: %{buffer_name}, Line Start: %{selection_line_start}, Line End: %{selection_line_end} \n\n %{selection}' | wl-copy}",
+  ":echo %sh{echo 'File: %{buffer_name}, Line Start: %{selection_line_start}, Line End: %{selection_line_end} \n\n %{selection}' | pbcopy}",
   ":echo Copied %{buffer_name} %{selection_line_start} %{selection_line_end} \n\n %{selection}"
 ]
 
