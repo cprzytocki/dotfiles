@@ -14,15 +14,29 @@
 # zen-browser-bin 1.14.9b-1
 # zsh-theme-powerlevel10k-git r4296.0996a941-1
 
-sudo pacman -S stow helix yazi nvm tmux qdirstat-bin
-yay -S seahorse gparted timeshift xorg-xhost ghostty aws-cli-bin aws-sam-cli-bin cursor-bin google-chrome intune-portal-bin microsoft-edge-stable-bin microsoft-identity-broker-bin qdirstat-bin teams-for-linux vesktop zen-browser-bin zsh-theme-powerlevel10k-git 
-
-xhost +local:
-
+sudo pacman -S stow yazi tmux
+yay -S zsh zen-browser-bin zsh-theme-powerlevel10k-git sesh-bin
+chsh -s $(which zsh)
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm 
 
+#  launch tmux Press prefix + I (capital i, as in Install) to fetch the plugin. (https://github.com/tmux-plugins/tpm)
+
+# optional packages
+sudo pacman -S helix nvm qdirstat-bin
+yay -S gparted timeshift xorg-xhost ghostty aws-cli-bin aws-sam-cli-bin cursor-bin google-chrome intune-portal-bin microsoft-edge-stable-bin microsoft-identity-broker-bin qdirstat-bin teams-for-linux vesktop
+
+
+
+# only if need to fix some issue
+xhost +local:
+
+
+# CHANGE default editor to helix in omarchy menu > setup > config > defaults
+
 # run seahorse
+# yay -S seahorse 
+
 # Install seahorse, create a "password keyring". You MUST set a password (because of a known bug mentioned above) and then set it as default.
 # https://github.com/recolic/microsoft-intune-archlinux?tab=readme-ov-file
 

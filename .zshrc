@@ -72,19 +72,19 @@ eval "$(fzf --zsh)"
 alias rebase-onto="~/.config/scripts/rebase-onto.sh"
 
 # VISORY
-alias sso="aws sso login --profile VisoryDev"
+# alias sso="aws sso login --profile VisoryDev"
 # alias sso="BROWSER=microsoft-edge-stable aws sso login --profile VisoryDev"
-alias clean="rm -rf .turbo; npm run clean ; npm run build:libraries ; npm i"
-alias clean_force="rm -rf .turbo; npm run clean -- --force; npm run build:libraries -- --force; npm i"
+# alias clean="rm -rf .turbo; npm run clean ; npm run build:libraries ; npm i"
+# alias clean_force="rm -rf .turbo; npm run clean -- --force; npm run build:libraries -- --force; npm i"
 
 # python
-export PATH="/Users/christopherprzytocki/Library/Python/3.10/bin:$PATH"
+# export PATH="/Users/christopherprzytocki/Library/Python/3.10/bin:$PATH"
 
 # bun
 # bun completions
-[ -s "/Users/christopherprzytocki/.bun/_bun" ] && source "/Users/christopherprzytocki/.bun/_bun"
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# [ -s "/Users/christopherprzytocki/.bun/_bun" ] && source "/Users/christopherprzytocki/.bun/_bun"
+# export BUN_INSTALL="$HOME/.bun"
+# export PATH="$BUN_INSTALL/bin:$PATH"
 
 # NODE PACKAGE MANAGER
 export NVM_DIR="$HOME/.nvm"
@@ -96,12 +96,12 @@ export NVM_DIR="$HOME/.nvm"
 
 
 # Load Angular CLI autocompletion. if not using angular (yuck) then remove this
-source <(ng completion script)
+# source <(ng completion script)
 
-PATH=~/.console-ninja/.bin:$PATH
+# PATH=~/.console-ninja/.bin:$PATH
 
-export AWS_PROFILE=VisoryDev
-export AWS_REGION=ap-southeast-2
-export NODE_MODULES_GLOBAL="$(npm root -g)"
+# export AWS_PROFILE=VisoryDev
+# export AWS_REGION=ap-southeast-2
+# export NODE_MODULES_GLOBAL="$(npm root -g)"
 
 export PATH="$HOME/.local/bin:$PATH"
