@@ -96,3 +96,4 @@ export AWS_PROFILE=VisoryDev
 export AWS_REGION=ap-southeast-2
 export EDITOR=hx
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
