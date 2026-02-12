@@ -17,6 +17,7 @@ brew install fzf
 brew install helix
 brew install lazygit
 brew install yazi
+brew install bat
 
 brew install --cask font-meslo-lg-nerd-font
 brew install --cask zen

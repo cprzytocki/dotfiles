@@ -10,5 +10,5 @@ startup_command = "ls"
 [[session]]
 name = "tmux config"
 path = "~/c/dotfiles/.config/tmux"
-startup_command = "nvim tmux.conf"
+startup_command = "hx tmux.conf"
 preview_command = "bat --color=always ~/c/dotfiles/.config/tmux/tmux.conf"

@@ -58,6 +58,7 @@ alias ls="eza -a --icons=always"
 eval "$(zoxide init zsh)"
 alias cd="z"
 alias lg="lazygit"
+alias cat="bat"
 
 # # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
