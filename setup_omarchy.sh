@@ -22,6 +22,18 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 #  launch tmux Press prefix + I (capital i, as in Install) to fetch the plugin. (https://github.com/tmux-plugins/tpm)
 
+
+###### REBIND capslock to k
+# Install keyd
+sudo pacman -S --needed keyd
+
+# Create config
+sudo mkdir -p /etc/keyd
+printf "[ids]\n*\n\n[main]\ncapslock = overload(control, esc)\n" | sudo tee /etc/keyd/default.conf > /dev/null
+
+# Enable and start (auto-start at boot)
+sudo systemctl enable --now keyd
+
 # optional packages
 sudo pacman -S helix nvm qdirstat-bin
 yay -S gparted timeshift xorg-xhost ghostty aws-cli-bin aws-sam-cli-bin cursor-bin google-chrome intune-portal-bin microsoft-edge-stable-bin microsoft-identity-broker-bin qdirstat-bin teams-for-linux vesktop
