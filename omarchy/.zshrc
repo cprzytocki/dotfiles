@@ -2,9 +2,11 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  # Only enable instant prompt for interactive terminals (not subprocesses like MCP)
+  if [[ -o interactive && -t 0 ]]; then
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  fi
 fi
-
 # Plugin Manager
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
@@ -72,7 +74,8 @@ alias rebase-onto="~/.config/scripts/rebase-onto.sh"
 # VISORY
 alias sso="aws sso login --profile VisoryDev"
 # alias sso="BROWSER=microsoft-edge-stable aws sso login --profile VisoryDev"
-alias clean="npm run clean ; npm run build:libraries ; npm i"
+alias clean="rm -rf .turbo; npm run clean ; npm run build:libraries ; npm i"
+alias clean_force="rm -rf .turbo; npm run clean -- --force; npm run build:libraries -- --force; npm i"
 
 # python
 export PATH="/Users/christopherprzytocki/Library/Python/3.10/bin:$PATH"
@@ -101,3 +104,4 @@ export AWS_PROFILE=VisoryDev
 export AWS_REGION=ap-southeast-2
 export NODE_MODULES_GLOBAL="$(npm root -g)"
 
+export PATH="$HOME/.local/bin:$PATH"
