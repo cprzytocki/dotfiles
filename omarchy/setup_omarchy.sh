@@ -14,7 +14,7 @@
 # zen-browser-bin 1.14.9b-1
 # zsh-theme-powerlevel10k-git r4296.0996a941-1
 
-sudo pacman -S stow helix yazi nvm tmux
+sudo pacman -S stow helix yazi nvm tmuxs:qdirstat-bintm,
 yay -S seahorse gparted timeshift xorg-xhost ghostty aws-cli-bin aws-sam-cli-bin cursor-bin google-chrome intune-portal-bin microsoft-edge-stable-bin microsoft-identity-broker-bin qdirstat-bin teams-for-linux vesktop zen-browser-bin zsh-theme-powerlevel10k-git 
 
 xhost +local:
