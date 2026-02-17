@@ -1,3 +1,4 @@
+defaults write com.apple.dock autohide-delay -float 0; defaults write com.apple.dock autohide-time-modifier -float 0.15; killall Dock
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
@@ -21,6 +22,7 @@ brew install yazi
 brew install bat
 brew install tmux
 brew install sesh
+brew install scroll-reverser
 
 brew install --cask font-meslo-lg-nerd-font
 brew install --cask zen
@@ -32,6 +34,7 @@ brew install --cask ghostty
 brew install --cask fork
 brew install --cask shottr
 brew install --cask claude-code
+brew install --cask meetingbar
 
 brew install --cask 1password
 brew install --cask slack
