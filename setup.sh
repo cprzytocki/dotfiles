@@ -20,7 +20,7 @@ brew install lazygit
 brew install yazi
 brew install bat
 brew install tmux
-
+brew install sesh
 
 brew install --cask font-meslo-lg-nerd-font
 brew install --cask zen
@@ -30,6 +30,7 @@ brew install --cask karabiner-elements
 brew install --cask raycast
 brew install --cask ghostty
 brew install --cask fork
+brew install --cask shottr
 
 brew install --cask 1password
 brew install --cask slack
