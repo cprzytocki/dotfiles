@@ -88,13 +88,4 @@ export NVM_DIR="$HOME/.nvm"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
 
-# Load Angular CLI autocompletion. if not using angular (yuck) then remove this
-source <(ng completion script)
-
-PATH=~/.console-ninja/.bin:$PATH
-
-export AWS_PROFILE=VisoryDev
-export AWS_REGION=ap-southeast-2
 export EDITOR=hx
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"

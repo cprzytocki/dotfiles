@@ -1,6 +1,7 @@
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+# then run following after brew or copy from output in previous script
 echo >> /Users/cprzytocki/.zprofile
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/cprzytocki/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -18,20 +19,22 @@ brew install helix
 brew install lazygit
 brew install yazi
 brew install bat
+brew install tmux
+
 
 brew install --cask font-meslo-lg-nerd-font
 brew install --cask zen
 brew install --cask cursor
-brew install --cask wezterm
 brew install --cask google-chrome
 brew install --cask karabiner-elements
 brew install --cask raycast
-brew install --cask zed
 brew install --cask ghostty
 brew install --cask fork
-brew install --cask microsoft-teams
 
-npm install -g @angular/cli@19
+brew install --cask 1password
+brew install --cask slack
+brew install --cask zoom
+
 
 git config --global user.name "Chris Przytocki"
 git config --global user.email "cprzytocki@gmail.com"
@@ -40,6 +43,12 @@ git config --global user.email "cprzytocki@gmail.com"
 git clone https://github.com/cprzytocki/dotfiles.git
 cd dotfiles
 stow . 
+
+# tmux plugin manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm 
+tmux source ~/.tmux.conf
+prefix + I
+
 
 # install aws cli, need rosetta on mac
 sudo softwareupdate --install-rosetta
