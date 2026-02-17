@@ -67,25 +67,30 @@ eval "$(fzf --zsh)"
 alias rebase-onto="~/.config/scripts/rebase-onto.sh"
 
 # VISORY
-alias sso="aws sso login --profile VisoryDev"
+# alias sso="aws sso login --profile VisoryDev"
 # alias sso="BROWSER=microsoft-edge-stable aws sso login --profile VisoryDev"
-alias clean="npm run clean ; npm run build:libraries ; npm i"
+# alias clean="npm run clean ; npm run build:libraries ; npm i"
 
 # python
-export PATH="/Users/christopherprzytocki/Library/Python/3.10/bin:$PATH"
+# export PATH="/Users/christopherprzytocki/Library/Python/3.10/bin:$PATH"
 
 # bun
 # bun completions
-[ -s "/Users/christopherprzytocki/.bun/_bun" ] && source "/Users/christopherprzytocki/.bun/_bun"
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# [ -s "/Users/christopherprzytocki/.bun/_bun" ] && source "/Users/christopherprzytocki/.bun/_bun"
+# export BUN_INSTALL="$HOME/.bun"
+# export PATH="$BUN_INSTALL/bin:$PATH"
 
-# NODE PACKAGE MANAGER
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# # NODE PACKAGE MANAGER
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+export EDITOR=hx
+
+# ANKORED
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+export ASPNETCORE_ENVIRONMENT=Development
+export DOTNET_ENVIRONMENT=Development
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
 
-export EDITOR=hx
