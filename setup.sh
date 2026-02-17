@@ -31,6 +31,7 @@ brew install --cask raycast
 brew install --cask ghostty
 brew install --cask fork
 brew install --cask shottr
+brew install --cask claude-code
 
 brew install --cask 1password
 brew install --cask slack
