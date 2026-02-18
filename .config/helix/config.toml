@@ -1,5 +1,4 @@
 theme = "custom_catppuccin_mocha"
-# theme = "catppuccin_mocha"
 
 [editor]
 # auto-format = true
@@ -8,6 +7,7 @@ mouse = true
 bufferline = "multiple"
 color-modes = true
 true-color = true #fix colours over ssh
+clipboard-provider = "pasteboard"
 
 [editor.cursor-shape]
 insert = "bar"
