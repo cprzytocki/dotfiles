@@ -36,6 +36,7 @@ brew install --cask shottr
 brew install --cask claude-code
 brew install --cask meetingbar
 brew install --cask alt-tab
+brew install --cask obsidian
 
 brew install --cask 1password
 brew install --cask slack
