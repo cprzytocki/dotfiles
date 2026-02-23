@@ -23,6 +23,7 @@ brew install bat
 brew install tmux
 brew install sesh
 brew install scroll-reverser
+brew install typescript-language-server
 
 brew install --cask font-meslo-lg-nerd-font
 brew install --cask zen
