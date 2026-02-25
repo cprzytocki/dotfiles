@@ -25,6 +25,11 @@ brew install sesh
 brew install scroll-reverser
 brew install typescript-language-server
 
+# dotnet & C# LSP for helix
+brew install dotnet
+dotnet tool install --global csharp-ls --version 0.20.0
+echo 'export PATH="$PATH:$HOME/.dotnet/tools"' >> ~/.zprofile
+
 brew install --cask font-meslo-lg-nerd-font
 brew install --cask zen
 brew install --cask cursor

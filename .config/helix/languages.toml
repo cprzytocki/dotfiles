@@ -1,6 +1,5 @@
-[language-server.omnisharp]
-command = "/opt/homebrew/Cellar/omnisharp/1.35.3/libexec/run"
-args = ["--languageserver"]
+[language-server.csharp-ls]
+command = "csharp-ls"
 
 [language-server.gpt]
 command = "helix-gpt"
@@ -24,6 +23,10 @@ args = [
 ]
 
 file-types = ["ts", "typescript", "html"]
+
+[[language]]
+name = "c-sharp"
+language-servers = ["csharp-ls"]
 
 [[language]]
 name = "typescript"
