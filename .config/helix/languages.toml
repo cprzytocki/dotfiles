@@ -1,3 +1,7 @@
+[language-server.omnisharp]
+command = "/opt/homebrew/Cellar/omnisharp/1.35.3/libexec/run"
+args = ["--languageserver"]
+
 [language-server.gpt]
 command = "helix-gpt"
 args = [
