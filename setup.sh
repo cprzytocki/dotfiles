@@ -68,4 +68,12 @@ sudo softwareupdate --install-rosetta
 curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
 sudo installer -pkg AWSCLIV2.pkg -target /
 
+# jira api token
+# 1. Generate API token at https://id.atlassian.com/manage-profile/security/api-tokens
+# 2. Store token in macOS Keychain:
+#    security add-generic-password -a "jira-cli" -s "jira-cli-api-token" -w "<YOUR_API_TOKEN>" -U
+# 3. Add to ~/.zshrc:
+#    export JIRA_API_TOKEN=$(security find-generic-password -a "jira-cli" -s "jira-cli-api-token" -w 2>/dev/null)
+# 4. Run: jira init --installation cloud --server https://ankored.atlassian.net --login cprzytocki@ankored.com --project ENG
+
 

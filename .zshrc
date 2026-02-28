@@ -94,3 +94,6 @@ export DOTNET_ENVIRONMENT=Development
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
 
+
+# Jira CLI API Token (from macOS Keychain)
+export JIRA_API_TOKEN=$(security find-generic-password -a "jira-cli" -s "jira-cli-api-token" -w 2>/dev/null)
