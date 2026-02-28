@@ -25,11 +25,6 @@ brew install sesh
 brew install scroll-reverser
 brew install typescript-language-server
 
-# dotnet & C# LSP for helix
-brew install dotnet
-dotnet tool install --global csharp-ls --version 0.20.0
-echo 'export PATH="$PATH:$HOME/.dotnet/tools"' >> ~/.zprofile
-
 brew install --cask font-meslo-lg-nerd-font
 brew install --cask zen
 brew install --cask cursor
@@ -67,6 +62,11 @@ prefix + I
 sudo softwareupdate --install-rosetta
 curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
 sudo installer -pkg AWSCLIV2.pkg -target /
+
+# dotnet & C# LSP for helix
+brew install dotnet
+dotnet tool install --global csharp-ls --version 0.20.0
+echo 'export PATH="$PATH:$HOME/.dotnet/tools"' >> ~/.zprofile
 
 # jira api token
 # 1. Generate API token at https://id.atlassian.com/manage-profile/security/api-tokens
