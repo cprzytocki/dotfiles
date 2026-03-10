@@ -23,7 +23,8 @@ brew install bat
 brew install tmux
 brew install sesh
 brew install scroll-reverser
-brew install typescript-language-server
+# helix LSPs (install via npm under asdf, not brew)
+npm install -g typescript-language-server typescript vscode-langservers-extracted@4.8
 
 brew install --cask font-meslo-lg-nerd-font
 brew install --cask zen
