@@ -16,6 +16,7 @@ brew install git
 brew install zoxide
 brew install eza
 brew install fzf
+brew install fd
 brew install helix
 brew install lazygit
 brew install yazi
