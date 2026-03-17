@@ -27,6 +27,8 @@ args = [
 [[language]]
 name = "c-sharp"
 language-servers = ["csharp-ls"]
+formatter = { command = "dotnet", args = ["csharpier", "format", "--write-stdout"] }
+auto-format = true
 
 # [[language]]
 # name = "typescript"
