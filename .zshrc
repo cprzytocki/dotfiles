@@ -97,5 +97,7 @@ export DOTNET_ENVIRONMENT=Development
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
 
 
-# Jira CLI API Token (from macOS Keychain)
+# Jira
 export JIRA_API_TOKEN=$(security find-generic-password -a "jira-cli" -s "jira-cli-api-token" -w 2>/dev/null)
+export JIRA_BASE_URL=https://ankored.atlassian.net
+export JIRA_PROJECT_KEY=ENG
