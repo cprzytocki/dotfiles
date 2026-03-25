@@ -67,6 +67,8 @@ eval "$(fzf --zsh)"
 alias rebase-onto="~/.config/scripts/rebase-onto.sh"
 alias ankored-api="~/.config/scripts/ankored-api.sh"
 alias ankored-migrate="~/.config/scripts/ankored-migrate.sh"
+alias api-start="~/.config/scripts/api-services.sh start"
+alias api-stop="~/.config/scripts/api-services.sh stop"
 
 # VISORY
 # alias sso="aws sso login --profile VisoryDev"
