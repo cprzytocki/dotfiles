@@ -1,5 +1,7 @@
-[language-server.csharp-ls]
-command = "csharp-ls"
+# [language-server.csharp-ls]
+# command = "csharp-ls"
+# timeout = 120
+
 
 [language-server.gpt]
 command = "helix-gpt"
@@ -26,7 +28,7 @@ args = [
 
 [[language]]
 name = "c-sharp"
-language-servers = ["csharp-ls"]
+# language-servers uses helix HEAD default: ["roslyn-language-server", "omnisharp", "csharp-ls"]
 formatter = { command = "dotnet", args = ["csharpier", "format", "--write-stdout"] }
 auto-format = true
 

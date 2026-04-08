@@ -8,6 +8,7 @@ bufferline = "multiple"
 color-modes = true
 true-color = true #fix colours over ssh
 clipboard-provider = "pasteboard"
+end-of-line-diagnostics = "disable"
 
 [editor.cursor-shape]
 insert = "bar"
@@ -79,6 +80,6 @@ hidden = false # show hidden files as in starting with a dot
 git-global = false # show files hidden by git globally
 
 
-# [editor.inline-diagnostics]
-# "cursor-line" = "warning"
-# "other-lines" = "error"
+[editor.inline-diagnostics]
+cursor-line = "disable"
+other-lines = "disable"

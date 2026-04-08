@@ -17,7 +17,7 @@ brew install zoxide
 brew install eza
 brew install fzf
 brew install fd
-brew install helix
+brew install --HEAD helix
 brew install lazygit
 brew install yazi
 brew install bat
@@ -67,7 +67,7 @@ sudo installer -pkg AWSCLIV2.pkg -target /
 
 # dotnet & C# LSP for helix
 brew install dotnet
-dotnet tool install --global csharp-ls --version 0.20.0
+dotnet tool install --global roslyn-language-server --prerelease
 echo 'export PATH="$PATH:$HOME/.dotnet/tools"' >> ~/.zprofile
 
 # jira api token
