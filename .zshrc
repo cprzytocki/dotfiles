@@ -55,8 +55,15 @@ zstyle ':fzf-tab:*' fzf-flags $(echo $FZF_DEFAULT_OPTS)
 # ---- Eza (better ls) -----
 alias ls="eza -a --icons=always"
 # ---- Zoxide (better cd) ----
-eval "$(zoxide init zsh)"
-alias cd="z"
+if [ -z "$DISABLE_ZOXIDE" ]; then
+    eval "$(zoxide init zsh)"
+    alias cd="z"
+fi
+# ~/.claude/settings.json:
+#   "env": {
+#     "DISABLE_ZOXIDE": "1"
+#   }
+# 
 alias lg="lazygit"
 alias cat="bat"
 
@@ -65,27 +72,6 @@ eval "$(fzf --zsh)"
 
 # Rebase onto alias 
 alias rebase-onto="~/.config/scripts/rebase-onto.sh"
-alias ankored-api="~/.config/scripts/ankored-api.sh"
-alias ankored-migrate="~/.config/scripts/ankored-migrate.sh"
-
-# VISORY
-# alias sso="aws sso login --profile VisoryDev"
-# alias sso="BROWSER=microsoft-edge-stable aws sso login --profile VisoryDev"
-# alias clean="npm run clean ; npm run build:libraries ; npm i"
-
-# python
-# export PATH="/Users/christopherprzytocki/Library/Python/3.10/bin:$PATH"
-
-# bun
-# bun completions
-# [ -s "/Users/christopherprzytocki/.bun/_bun" ] && source "/Users/christopherprzytocki/.bun/_bun"
-# export BUN_INSTALL="$HOME/.bun"
-# export PATH="$BUN_INSTALL/bin:$PATH"
-
-# # NODE PACKAGE MANAGER
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export EDITOR=hx
 
@@ -93,11 +79,16 @@ export EDITOR=hx
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export ASPNETCORE_ENVIRONMENT=Development
 export DOTNET_ENVIRONMENT=Development
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
-
+alias fmt='{ git diff --name-only --diff-filter=d HEAD -- "*.cs"; git ls-files --others --exclude-standard -- "*.cs"; } | sort -u | xargs dotnet csharpier format'
+alias ankored-api="~/.config/scripts/ankored-api.sh"
+alias ankored-migrate="~/.config/scripts/ankored-migrate.sh"
 
 # Jira
 export JIRA_API_TOKEN=$(security find-generic-password -a "jira-cli" -s "jira-cli-api-token" -w 2>/dev/null)
 export JIRA_BASE_URL=https://ankored.atlassian.net
 export JIRA_PROJECT_KEY=ENG
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
+
+

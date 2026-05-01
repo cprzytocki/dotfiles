@@ -28,7 +28,7 @@ args = [
 
 [[language]]
 name = "c-sharp"
-# language-servers uses helix HEAD default: ["roslyn-language-server", "omnisharp", "csharp-ls"]
+language-servers = ["roslyn-language-server"]
 formatter = { command = "dotnet", args = ["csharpier", "format", "--write-stdout"] }
 auto-format = true
 
