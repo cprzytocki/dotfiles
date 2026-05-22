@@ -82,6 +82,7 @@ export DOTNET_ENVIRONMENT=Development
 alias fmt='{ git diff --name-only --diff-filter=d HEAD -- "*.cs"; git ls-files --others --exclude-standard -- "*.cs"; } | sort -u | xargs dotnet csharpier format'
 alias ankored-api="~/.config/scripts/ankored-api.sh"
 alias ankored-migrate="~/.config/scripts/ankored-migrate.sh"
+alias flush-flags='docker exec redis redis-cli --scan --pattern "AnkoredApi:FeatureFlags:*" | xargs -r docker exec -i redis redis-cli DEL && echo "Feature flag cache cleared" || echo "No feature flag keys found"'
 
 # Jira
 export JIRA_API_TOKEN=$(security find-generic-password -a "jira-cli" -s "jira-cli-api-token" -w 2>/dev/null)
@@ -92,3 +93,9 @@ export JIRA_PROJECT_KEY=ENG
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
 
 
+
+# Added by CodeRabbit CLI installer
+export PATH="/Users/chrisprzytocki/.local/bin:$PATH"
+
+# opencode
+export PATH=/Users/chrisprzytocki/.opencode/bin:$PATH
