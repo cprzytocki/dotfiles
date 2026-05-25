@@ -2,8 +2,8 @@
 # Launches all API services in a tmux session with named windows.
 # Usage: ./ankored-api.sh [start|stop]
 
-SESSION="ankored-api"
-API_ROOT="$HOME/git/ankored-api/src"
+SESSION="ankored-app"
+API_ROOT="$HOME/git/ankored-app/api/src"
 
 stop_session() {
     if ! tmux has-session -t "$SESSION" 2>/dev/null; then
