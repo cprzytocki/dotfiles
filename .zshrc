@@ -69,6 +69,7 @@ alias cat="bat"
 
 # ---- Worktrunk (git worktrees) ----
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
 # # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
 
@@ -81,6 +82,7 @@ export EDITOR=hx
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export ASPNETCORE_ENVIRONMENT=Development
 export DOTNET_ENVIRONMENT=Development
+export SKIP_HUSKY="true"
 alias fmt='{ git diff --name-only --diff-filter=d HEAD -- "*.cs"; git ls-files --others --exclude-standard -- "*.cs"; } | sort -u | xargs dotnet csharpier format'
 alias ankored-api="~/.config/scripts/ankored-api.sh"
 alias ankored-migrate="~/.config/scripts/ankored-migrate.sh"
