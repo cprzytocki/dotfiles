@@ -23,6 +23,7 @@ brew install yazi
 brew install bat
 brew install tmux
 brew install sesh
+brew install worktrunk
 brew install scroll-reverser
 # helix LSPs (install via npm under asdf, not brew)
 npm install -g typescript-language-server typescript vscode-langservers-extracted@4.8

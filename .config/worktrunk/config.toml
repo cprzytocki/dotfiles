@@ -1,0 +1,12 @@
+# Worktrees as sibling directories: ~/git/ankored-api.feature-auth
+worktree-path = "{{ repo_path }}/../{{ repo }}.{{ branch | sanitize }}"
+
+[post-start]
+copy = "wt step copy-ignored"
+
+[switch]
+cd = true
+
+
+[remove]
+delete-branch = true

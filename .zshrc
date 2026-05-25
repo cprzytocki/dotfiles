@@ -67,6 +67,8 @@ fi
 alias lg="lazygit"
 alias cat="bat"
 
+# ---- Worktrunk (git worktrees) ----
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
 # # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
 
@@ -89,13 +91,11 @@ export JIRA_API_TOKEN=$(security find-generic-password -a "jira-cli" -s "jira-cl
 export JIRA_BASE_URL=https://ankored.atlassian.net
 export JIRA_PROJECT_KEY=ENG
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
-
-
-
 # Added by CodeRabbit CLI installer
 export PATH="/Users/chrisprzytocki/.local/bin:$PATH"
 
 # opencode
 export PATH=/Users/chrisprzytocki/.opencode/bin:$PATH
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
