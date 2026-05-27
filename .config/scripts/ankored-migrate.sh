@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-ROOT="$HOME/git/ankored-api"
+ROOT="$HOME/git/ankored-app"
 
 echo "Running database migrations..."
-(cd "$ROOT/src/AnkoredApi.DbMigrator" && dotnet run)
+(cd "$ROOT/api/src/AnkoredApi.DbMigrator" && dotnet run)
