@@ -37,7 +37,9 @@ brew install --cask raycast
 brew install --cask ghostty
 brew install --cask fork
 brew install --cask shottr
-brew install --cask claude-code
+
+# Claude Code — use the official installer (auto-updates, faster release cadence than brew)
+curl -fsSL https://claude.ai/install.sh | bash
 
 brew install --cask meetingbar
 brew install --cask alt-tab
