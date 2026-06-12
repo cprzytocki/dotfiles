@@ -83,9 +83,9 @@ export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export ASPNETCORE_ENVIRONMENT=Development
 export DOTNET_ENVIRONMENT=Development
 export SKIP_HUSKY="true"
-alias fmt='{ git diff --name-only --diff-filter=d HEAD -- "*.cs"; git ls-files --others --exclude-standard -- "*.cs"; } | sort -u | xargs dotnet csharpier format'
-alias ankored-api="~/.config/scripts/ankored-api.sh"
-alias ankored-migrate="~/.config/scripts/ankored-migrate.sh"
+alias fmt='( cd "$(git rev-parse --show-toplevel)/api" && { git diff --name-only --diff-filter=d HEAD --relative -- "*.cs"; git ls-files --others --exclude-standard -- "*.cs"; } | sort -u | xargs dotnet csharpier format )'
+alias api="~/.config/scripts/ankored-api.sh"
+alias migrate="~/.config/scripts/ankored-migrate.sh"
 alias flush-flags='docker exec redis redis-cli --scan --pattern "AnkoredApi:FeatureFlags:*" | xargs -r docker exec -i redis redis-cli DEL && echo "Feature flag cache cleared" || echo "No feature flag keys found"'
 
 # Jira
