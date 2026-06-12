@@ -74,6 +74,7 @@ D = "kill_to_line_end"
   ":echo %sh{echo 'File: %{buffer_name}, Line Start: %{selection_line_start}, Line End: %{selection_line_end} \n\n %{selection}' | pbcopy}",
   ":echo Copied %{buffer_name} %{selection_line_start} %{selection_line_end} \n\n %{selection}"
 ]
+"B" = ":sh git blame -L %{cursor_line},%{cursor_line} %{buffer_name}"
 
 [editor.file-picker]
 hidden = false # show hidden files as in starting with a dot
