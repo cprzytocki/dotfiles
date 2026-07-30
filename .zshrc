@@ -86,6 +86,7 @@ export SKIP_HUSKY="true"
 alias fmt='( cd "$(git rev-parse --show-toplevel)/api" && { git diff --name-only --diff-filter=d HEAD --relative -- "*.cs"; git ls-files --others --exclude-standard -- "*.cs"; } | sort -u | xargs dotnet csharpier format )'
 alias api="~/.config/scripts/ankored-api.sh"
 alias migrate="~/.config/scripts/ankored-migrate.sh"
+alias review="~/.config/scripts/ankored-review.sh"
 alias flush-flags='docker exec redis redis-cli --scan --pattern "AnkoredApi:FeatureFlags:*" | xargs -r docker exec -i redis redis-cli DEL && echo "Feature flag cache cleared" || echo "No feature flag keys found"'
 
 # Jira

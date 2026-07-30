@@ -26,6 +26,43 @@ args = [
 
 # file-types = ["ts", "typescript", "html"]
 
+# # Solution load takes minutes on large .NET solutions; helix's default 20s
+# # request timeout abandons everything sent during that window.
+# # args mirror the built-in definition plus file logging for troubleshooting.
+# [language-server.roslyn-language-server]
+# timeout = 120
+# args = [
+#   "--stdio",
+#   "--autoLoadProjects",
+#   "--logLevel",
+#   "Information",
+#   "--extensionLogDirectory",
+#   "/Users/chrisprzytocki/.cache/roslyn-ls-logs",
+# ]
+
+# These servers are npm globals installed under asdf's nodejs 22.18.0; pin that
+# version so their shims resolve regardless of what a repo's .tool-versions sets.
+[language-server.typescript-language-server]
+environment = { ASDF_NODEJS_VERSION = "22.18.0" }
+
+[language-server.vscode-eslint-language-server]
+environment = { ASDF_NODEJS_VERSION = "22.18.0" }
+
+[language-server.vscode-json-language-server]
+environment = { ASDF_NODEJS_VERSION = "22.18.0" }
+
+[language-server.vscode-css-language-server]
+environment = { ASDF_NODEJS_VERSION = "22.18.0" }
+
+[language-server.vscode-html-language-server]
+environment = { ASDF_NODEJS_VERSION = "22.18.0" }
+
+# # Analyzer scope must be fullSolution: compilation-end analyzers (e.g. the repo's
+# # ANK001 NavigationAccessAnalyzer) are skipped from live diagnostics at openFiles scope.
+# [language-server.roslyn-language-server.config."csharp|background_analysis"]
+# dotnet_analyzer_diagnostics_scope = "fullSolution"
+# dotnet_compiler_diagnostics_scope = "openFiles"
+
 [[language]]
 name = "c-sharp"
 language-servers = ["roslyn-language-server"]
