@@ -4,6 +4,9 @@
 .config/gh/
 .config/graphite/
 .config/opencode/
+.config/btop/
+.config/hunk/
+.config/zed/
 .DS_Store
 
 # Local Azure identifiers for ankored-firewall.sh
