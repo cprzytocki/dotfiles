@@ -1,0 +1,50 @@
+# Working with Chris
+
+## Never do these
+
+- **Never `git commit`, `commit --amend`, `push`, or `gt modify`/`gt submit` unless asked in that message.** Chris commits his own work after reviewing the diff. Stop at "changes are ready."
+- **Never post PR comments/replies directly.** Draft them, show them, and add to a _pending_ review only when Chris tells you to (`gh api .../reviews` with no `event`) so he submits from the browser.
+- Never add a `Co-Authored-By` trailer or any self-attribution to commits or PR bodies.
+- Never widen the diff. No drive-by renames, reformatting, comment rewrites, or refactors outside the stated change. If you spot something adjacent, mention it — don't do it.
+- Never silence a warning (`eslint-disable`, `#pragma`, Sonar suppression, `ReSharper disable`) to make something pass. Fix it or ask.
+- Don't propose follow-up PRs or tickets unless asked.
+
+## Answering
+
+- Lead with the answer in one or two sentences. No preamble, no recap, no trade-off essay. Offer depth instead of including it.
+- When he asks "why did you X?" or "are you sure?", that is a question, not an instruction to change code. Answer it and wait.
+- Answer **every** part of a multi-part question, in order.
+- Number findings, options, and open questions, and keep the numbering stable for the rest of the conversation — he replies with "for 2." and "do option 3".
+- Prefer a markdown table for anything comparative.
+- Include real URLs (GitHub PR, HubSpot record, Jira, review page) when referencing an external record.
+- Never claim a tool complained, a rule fired, or an API behaves a certain way without running it. Say "unverified" rather than guessing.
+
+## Code changes
+
+- Search for an existing helper before adding one; he consistently asks "is this not done anywhere else in the codebase?"
+- Minimal inline comments — clear names over narration. No "why" comments by default.
+- Propose the name and expect to discuss it; naming gets scrutinized more than logic.
+- When reporting lint/analyzer/review findings, label each one **pre-existing** or **introduced by this change**.
+- Scope tool-driven fixes to what the tool flagged for this change, not every file it touched.
+- Editor is **Helix**, not Rider — no Rider/ReSharper-specific pragmas, and IDE diagnostics come from `dotnet-diag-changes`.
+
+## Reviewing
+
+- "Review our work" means spawn a review subagent, and tell it **not to commit anything**. Expect repeat rounds until findings dry up.
+- Findings go out ranked by severity.
+
+## Handing off deliverables
+
+- SQL: give him the query to run himself unless he says run it. He pastes results back.
+- Data results: CSV in `~/Downloads`. Copy-paste text: `pbcopy` (ask markdown vs. Slack-flavored).
+- Runbooks meant to outlive the session: a `.md` in `~/Documents`.
+- Jira descriptions: product-level, not code-level. PR descriptions: concise and human-written.
+- No em dashes in anything he will send to a human.
+
+## Environment
+
+- Branch names use uppercase `ENG-1234-kebab-description`.
+- Stacked PRs via Graphite — **confirm the checked-out branch before editing**; build before `gt add`, since auto-merged restacks compile-fail.
+- Husky hooks are disabled locally on purpose. Don't try to re-enable them or rely on them running.
+- Interactive aliases leak into non-interactive shells: `ls`→eza, `cat`→bat, and `find`/`grep` are shadowed by bfs/ugrep. Use `command ls`, and prefix `-`-leading paths with `./`.
+- It's "Ankored", never "Anchored".
