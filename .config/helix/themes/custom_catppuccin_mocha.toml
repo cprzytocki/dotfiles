@@ -1,2 +1,13 @@
 inherits = "catppuccin_mocha"
 "ui.background" ={}
+
+# side-by-side diff view (:diff-split)
+"diff.plus.line" = { bg = "#20372c" }
+"diff.minus.line" = { bg = "#3a2230" }
+"diff.plus.word" = { bg = "#356e4e" }
+"diff.minus.word" = { bg = "#6e3049" }
+# The line keeps saying added or removed. The gutter says whether it is staged, in catppuccin's
+# own yellow, so the two signals never compete for the same pixels.
+"diff.staged.gutter" = { fg = "#f9e2af" }
+# no bg, so the hatched gap keeps the normal editor background
+"diff.filler" = { fg = "#45475a" }
