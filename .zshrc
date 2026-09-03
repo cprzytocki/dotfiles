@@ -76,6 +76,10 @@ eval "$(fzf --zsh)"
 # Rebase onto alias 
 alias rebase-onto="~/.config/scripts/rebase-onto.sh"
 
+# ---- Helix dev build (side-by-side diff fork) ----
+# alias hxdev='HELIX_RUNTIME=$HOME/git/helix/runtime $HOME/git/helix/target/release/hx'
+alias hx='HELIX_RUNTIME=$HOME/git/helix/runtime $HOME/git/helix/target/release/hx'
+
 export EDITOR=hx
 
 # ANKORED
