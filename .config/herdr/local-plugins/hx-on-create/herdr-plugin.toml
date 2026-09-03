@@ -1,0 +1,10 @@
+id = "hx-on-create"
+name = "hx on create"
+version = "0.1.0"
+min_herdr_version = "0.8.0"
+description = "Open Helix in a new workspace's first pane, replacing sesh's default_session.startup_command."
+platforms = ["macos"]
+
+[[events]]
+on = "workspace.created"
+command = ["sh", "bin/hx-on-create"]

@@ -91,6 +91,7 @@ alias flush-flags='docker exec redis redis-cli --scan --pattern "AnkoredApi:Feat
 
 # Jira
 export JIRA_API_TOKEN=$(security find-generic-password -a "jira-cli" -s "jira-cli-api-token" -w 2>/dev/null)
+alias firewall="~/.config/scripts/ankored-firewall.sh"
 export JIRA_BASE_URL=https://ankored.atlassian.net
 export JIRA_PROJECT_KEY=ENG
 

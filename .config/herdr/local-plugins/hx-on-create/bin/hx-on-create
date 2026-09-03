@@ -1,0 +1,69 @@
+#!/bin/sh
+# Fires on workspace.created. Runs `hx .` in the new workspace's only pane.
+set -eu
+
+[ -n "${HERDR_PLUGIN_EVENT_JSON:-}" ] || exit 0
+command -v python3 >/dev/null 2>&1 || exit 0
+
+herdr=$(command -v herdr 2>/dev/null || true)
+[ -n "$herdr" ] || herdr="$HOME/.local/bin/herdr"
+[ -x "$herdr" ] || exit 0
+
+# The envelope shape is undocumented, so accept the payload nested or bare.
+read_ws() {
+  printf '%s' "$HERDR_PLUGIN_EVENT_JSON" | python3 -c '
+import json, sys
+try:
+    d = json.load(sys.stdin)
+except Exception:
+    sys.exit(0)
+for c in (d, d.get("data") or {}, d.get("event") or {}):
+    w = c.get("workspace") if isinstance(c, dict) else None
+    if isinstance(w, dict) and w.get("workspace_id"):
+        print(w["workspace_id"], w.get("pane_count", 1))
+        break
+'
+}
+
+set -- $(read_ws)
+ws=${1:-}
+panes=${2:-0}
+[ -n "$ws" ] || exit 0
+
+# Only a brand new, single-pane workspace. Never touch an existing layout.
+[ "$panes" = "1" ] || exit 0
+
+pane=$("$herdr" pane list 2>/dev/null | python3 -c '
+import json, sys
+try:
+    d = json.load(sys.stdin)
+except Exception:
+    sys.exit(0)
+ps = [p for p in d["result"]["panes"] if p.get("workspace_id") == sys.argv[1]]
+if len(ps) == 1:
+    print(ps[0]["pane_id"])
+' "$ws")
+[ -n "$pane" ] || exit 0
+
+# Wait for the shell to reach its prompt, then bail if anything is running.
+i=0
+while [ "$i" -lt 20 ]; do
+  busy=$("$herdr" pane process-info --pane "$pane" 2>/dev/null | python3 -c '
+import json, sys
+try:
+    d = json.load(sys.stdin)
+except Exception:
+    print("unknown"); sys.exit(0)
+i = d["result"]["process_info"]
+shell = i.get("shell_pid")
+fg = i.get("foreground_processes") or []
+# At a prompt the only foreground process is the shell itself.
+print("no" if shell and all(p.get("pid") == shell for p in fg) else "yes")
+')
+  [ "$busy" = "no" ] && break
+  i=$((i + 1))
+  sleep 0.25
+done
+[ "${busy:-yes}" = "no" ] || exit 0
+
+exec "$herdr" pane run "$pane" "hx ."

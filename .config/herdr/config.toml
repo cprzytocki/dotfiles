@@ -1,0 +1,60 @@
+# Ported from ~/.tmux.conf. Reload with prefix+r or `herdr server reload-config`.
+
+onboarding = false
+
+[theme]
+name = "catppuccin"
+
+[theme.custom]
+# Ghostty runs background-opacity 0.8 + blur; let it through the pane area.
+panel_bg = "reset"
+
+[keys]
+# tmux: set -g prefix C-a. Press ctrl+a twice to send a literal ctrl+a.
+prefix = "ctrl+a"
+
+# tmux: bind - split-window -h (side by side), bind | split-window -v (stacked).
+# herdr names them by divider axis, so "vertical" is the side-by-side one.
+# Note: "pipe" and "bar" are rejected as key names; the literal | works.
+split_vertical = "prefix+minus"
+split_horizontal = "prefix+|"
+
+# prefix+k is the herdr-navigator picker, see [[keys.command]] below.
+# Pane focus moved to arrows, which is where tmux had it by default anyway.
+focus_pane_left = "prefix+left"
+focus_pane_down = "prefix+down"
+focus_pane_up = "prefix+up"
+focus_pane_right = "prefix+right"
+
+zoom = "prefix+enter"           # tmux: bind Enter resize-pane -Z
+reload_config = "prefix+r"      # tmux: bind r source-file
+resize_mode = "prefix+shift+r"  # moved off prefix+r
+new_worktree = "prefix+shift+w" # tmux: bind W (wt-create.sh)
+
+[ui]
+mouse_scroll_lines = 1          # tmux: WheelUp/DownPane -N 1
+pane_outer_borders = false      # tmux-style internal splitters, no outside frame
+hide_tab_bar_when_single_tab = true
+# confirm_close = false           # tmux: bind x kill-pane, no y/n prompt
+prompt_new_tab_name = false
+
+# [ui.toast]
+# delivery = "terminal"
+
+# [experimental]
+# pane_history = true             # what tmux-resurrect/continuum were for
+
+# tmux: bind k (sesh fzf picker)
+agent_panel_sort = "spaces"
+[[keys.command]]
+key = "prefix+k"
+type = "plugin_action"
+command = "herdr-navigator.open"
+description = "jump to anything"
+
+# tmux: bind L "sesh last"
+[[keys.command]]
+key = "prefix+shift+l"
+type = "plugin_action"
+command = "herdr-navigator.jump-back"
+description = "jump back"

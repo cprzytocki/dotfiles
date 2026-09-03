@@ -1,0 +1,44 @@
+# Replaces the sesh fzf picker that was bound to prefix+k in .tmux.conf.
+
+[picker]
+reuse_existing = true   # sesh connect semantics: focus if already open
+create_missing = true   # otherwise create the workspace
+prefix_workspace_labels = true
+engine = "nucleo"
+source_order = ["workspace", "agent", "zoxide", "root", "session", "server", "project", "quick", "plugin"]
+source_priority_boost = 5
+agent_sort = "herdr"
+preview = true          # sesh had --preview-window right:55%
+detailed_rows = true
+check_updates = true    # polls GitHub releases once a day
+vim_mode = false
+
+[notifications]
+enabled = true
+audio = false
+
+[jump_back]
+enabled = true          # tmux: bind L "sesh last"
+pin_previous = true
+
+[sources]
+open_workspaces = true
+zoxide = true
+roots = true
+agents = true
+sessions = true
+servers = false
+# Both require the cloudmanic/herdr-plus plugin, which is not installed.
+herdr_plus_projects = false
+herdr_plus_quick_actions = false
+
+[theme]
+inherit_herdr = true    # picks up catppuccin from ~/.config/herdr/config.toml
+
+# Repos and worktrunk worktrees (~/git/<repo>.<branch>) both sit at depth 1.
+[[roots]]
+path = "~/git"
+max_depth = 2
+
+[sessions]
+local = true
