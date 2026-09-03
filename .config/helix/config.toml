@@ -33,6 +33,11 @@ X = ["extend_line_up", "extend_to_line_bounds"]
 C-u = ["half_page_up", "align_view_center"]
 C-d = ["half_page_down", "align_view_center"]
 D = "kill_to_line_end" 
+
+# Stage the hunk under the cursor and jump to the next one, so walking a file is one key
+# per hunk. `-` unstages without moving, so a mis-stage is corrected in place.
+"+" = [":write", ":sh ~/.config/scripts/git-stage-lines.py stage %{file_path_absolute} %{selection_line_start} %{selection_line_end}", "goto_next_change"]
+"-" = [":write", ":sh ~/.config/scripts/git-stage-lines.py toggle %{file_path_absolute} %{selection_line_start} %{selection_line_end}"]
 "C-A-c" = [
   ":echo %sh{echo '%{buffer_name}' | pbcopy}",
   ":echo Copied %{buffer_name}"
@@ -43,6 +48,8 @@ D = "kill_to_line_end"
 ]
 
 [keys.select]
+"+" = [":write", ":sh ~/.config/scripts/git-stage-lines.py stage %{file_path_absolute} %{selection_line_start} %{selection_line_end}", "goto_next_change"]
+"-" = [":write", ":sh ~/.config/scripts/git-stage-lines.py toggle %{file_path_absolute} %{selection_line_start} %{selection_line_end}"]
 "{" = ["goto_prev_paragraph"]
 "}" = ["goto_next_paragraph"]
 "C-A-c" = [
@@ -53,6 +60,13 @@ D = "kill_to_line_end"
   ":echo %sh{echo 'File: %{buffer_name}, Line Start: %{selection_line_start}, Line End: %{selection_line_end} \n\n %{selection}' | pbcopy}",
   ":echo Copied %{buffer_name} %{selection_line_start} %{selection_line_end} \n\n %{selection}"
 ]
+
+# version control, same as normal mode: a multi-line selection is made in select mode
+[keys.select."space".v]
+s = [":write", ":sh ~/.config/scripts/git-stage-lines.py stage %{file_path_absolute} %{selection_line_start} %{selection_line_end}"]
+u = [":write", ":sh ~/.config/scripts/git-stage-lines.py unstage %{file_path_absolute} %{selection_line_start} %{selection_line_end}"]
+S = [":write", ":sh git add %{file_path_absolute}"]
+U = [":write", ":sh git restore --staged %{file_path_absolute}"]
 
 [keys.select."space"]
 "C-c" = [
@@ -75,6 +89,18 @@ D = "kill_to_line_end"
   ":echo Copied %{buffer_name} %{selection_line_start} %{selection_line_end} \n\n %{selection}"
 ]
 "B" = ":sh git blame -L %{cursor_line},%{cursor_line} %{buffer_name}"
+
+# version control: stage/unstage the selected lines, or the whole file.
+# Writes first: line numbers come from the buffer, the diff comes from the file on disk.
+[keys.normal."space".v]
+s = [":write", ":sh ~/.config/scripts/git-stage-lines.py stage %{file_path_absolute} %{selection_line_start} %{selection_line_end}"]
+u = [":write", ":sh ~/.config/scripts/git-stage-lines.py unstage %{file_path_absolute} %{selection_line_start} %{selection_line_end}"]
+S = [":write", ":sh git add %{file_path_absolute}"]
+U = [":write", ":sh git restore --staged %{file_path_absolute}"]
+
+# toggles
+[keys.normal."space".t]
+# d = ":diff-toggle"
 
 [editor.file-picker]
 hidden = false # show hidden files as in starting with a dot
