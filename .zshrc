@@ -87,11 +87,11 @@ alias fmt='( cd "$(git rev-parse --show-toplevel)/api" && { git diff --name-only
 alias api="~/.config/scripts/ankored-api.sh"
 alias migrate="~/.config/scripts/ankored-migrate.sh"
 alias review="~/.config/scripts/ankored-review.sh"
+alias firewall="~/.config/scripts/ankored-firewall.sh"
 alias flush-flags='docker exec redis redis-cli --scan --pattern "AnkoredApi:FeatureFlags:*" | xargs -r docker exec -i redis redis-cli DEL && echo "Feature flag cache cleared" || echo "No feature flag keys found"'
 
 # Jira
 export JIRA_API_TOKEN=$(security find-generic-password -a "jira-cli" -s "jira-cli-api-token" -w 2>/dev/null)
-alias firewall="~/.config/scripts/ankored-firewall.sh"
 export JIRA_BASE_URL=https://ankored.atlassian.net
 export JIRA_PROJECT_KEY=ENG
 

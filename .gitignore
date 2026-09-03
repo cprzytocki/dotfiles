@@ -6,6 +6,9 @@
 .config/opencode/
 .DS_Store
 
+# Local Azure identifiers for ankored-firewall.sh
+.config/scripts/ankored-firewall.env
+
 # herdr runtime state, logs, sockets, and installed plugin checkouts
 .config/herdr/*.log
 .config/herdr/*.sock
