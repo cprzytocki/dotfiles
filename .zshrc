@@ -94,11 +94,20 @@ alias review="~/.config/scripts/ankored-review.sh"
 alias firewall="~/.config/scripts/ankored-firewall.sh"
 alias flush-flags='docker exec redis redis-cli --scan --pattern "AnkoredApi:FeatureFlags:*" | xargs -r docker exec -i redis redis-cli DEL && echo "Feature flag cache cleared" || echo "No feature flag keys found"'
 
+#sentry auth
+export SENTRY_TOKEN=$(security find-generic-password -a "sentry" -s "sentry-auth-token" -w 2>/dev/null)
+
+#bifrost prod auth
+export BIFROST_USERNAME=$(security find-generic-password -a "bifrost" -s "bifrost-username" -w 2>/dev/null)
+export BIFROST_PASSWORD=$(security find-generic-password -a "bifrost" -s "bifrost-password" -w 2>/dev/null)
 # Jira
 export JIRA_API_TOKEN=$(security find-generic-password -a "jira-cli" -s "jira-cli-api-token" -w 2>/dev/null)
 export JIRA_BASE_URL=https://ankored.atlassian.net
 export JIRA_PROJECT_KEY=ENG
 
+# HubSpot
+HUBSPOT_QA=$(security find-generic-password -a "hubspot" -s "hubspot-qa-token" -w 2>/dev/null)
+HUBSPOT_PROD=$(security find-generic-password -a "hubspot" -s "hubspot-prod-token" -w 2>/dev/null)
 # Added by CodeRabbit CLI installer
 export PATH="/Users/chrisprzytocki/.local/bin:$PATH"
 
