@@ -7,6 +7,8 @@
 .config/btop/
 .config/hunk/
 .config/zed/
+.config/1Password/
+.config/op/
 .DS_Store
 
 # Local Azure identifiers for ankored-firewall.sh
