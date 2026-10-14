@@ -41,7 +41,8 @@ Environments: dev qa prod (default: all three)
 
 Options:
   -r, --remove            Remove the IP instead of adding it
-  -s, --services LIST     Comma-separated subset of: keyvault,sqlserver,documentdb
+  -s, --services LIST     Comma-separated subset of: keyvault,sqlserver,documentdb,
+                          replica (read replica, only in environments that have one)
   -i, --ip ADDRESS        Use this IP instead of auto-detecting (validated)
   -n, --rule-name NAME    Firewall rule name (default: $ANKORED_FW_RULE_NAME or $USER)
       --status            Show the table and exit without changing anything
@@ -72,6 +73,17 @@ rg_for_env() {
 kv_for_env() { echo "${ANKORED_KV_NAME//\{env\}/$1}"; }
 sql_for_env() { echo "${ANKORED_SQL_NAME//\{env\}/$1}"; }
 docdb_for_env() { echo "${ANKORED_DOCDB_NAME//\{env\}/$1}"; }
+replica_for_env() { echo "${ANKORED_SQL_REPLICA_NAME//\{env\}/$1}"; }
+
+# Read replicas are their own logical server with their own firewall, and only
+# some environments have one.
+env_has_replica() {
+  [[ -n ${ANKORED_SQL_REPLICA_NAME:-} ]] || return 1
+  case " ${ANKORED_SQL_REPLICA_ENVS:-} " in
+    *" $1 "*) return 0 ;;
+  esac
+  return 1
+}
 
 docdb_url() {
   local sub=$1 rg=$2 cluster=$3 rule=${4:-}
@@ -317,17 +329,17 @@ record_named_rule() {
 }
 
 survey_sqlserver() {
-  local env=$1 sub=$2 rg=$3 server=$4 rule_ip reachable=true
+  local env=$1 sub=$2 rg=$3 server=$4 label=${5:-sql} rule_ip reachable=true
 
   if rule_ip=$(az sql server firewall-rule show --name "$RULE_NAME" --server "$server" \
     --resource-group "$rg" --subscription "$sub" --query startIpAddress -o tsv 2>/dev/null); then
-    record_named_rule "$env" sql "$server" true "$rule_ip" true
+    record_named_rule "$env" "$label" "$server" true "$rule_ip" true
     return 0
   fi
 
   az sql server show --name "$server" --resource-group "$rg" --subscription "$sub" \
     -o none 2>/dev/null || reachable=false
-  record_named_rule "$env" sql "$server" false "" "$reachable"
+  record_named_rule "$env" "$label" "$server" false "" "$reachable"
 }
 
 survey_documentdb() {
@@ -347,11 +359,11 @@ survey_documentdb() {
 
 print_table() {
   local row env service resource current plan
-  printf '\n%-5s  %-10s  %-19s  %-26s  %s\n' ENV SERVICE RESOURCE CURRENT ACTION
+  printf '\n%-5s  %-10s  %-24s  %-26s  %s\n' ENV SERVICE RESOURCE CURRENT ACTION
   for row in "${ROWS[@]}"; do
     IFS='|' read -r env service resource current plan _ <<<"$row"
     [[ $plan == none ]] && plan="-"
-    printf '%-5s  %-10s  %-19s  %-26s  %s\n' "$env" "$service" "$resource" "$current" "$plan"
+    printf '%-5s  %-10s  %-24s  %-26s  %s\n' "$env" "$service" "$resource" "$current" "$plan"
   done
   printf '\n'
 }
@@ -398,13 +410,13 @@ apply_row() {
           --subscription "$sub" --ip-address "$extra" || return 1
       fi
       ;;
-    sql:create|sql:update)
+    sql:create|sql:update|replica:create|replica:update)
       [[ $plan == create ]] && verb=create || verb=update
       run az sql server firewall-rule "$verb" --name "$RULE_NAME" --server "$resource" \
         --resource-group "$rg" --subscription "$sub" \
         --start-ip-address "$IP" --end-ip-address "$IP" || return 1
       ;;
-    sql:delete)
+    sql:delete|replica:delete)
       run az sql server firewall-rule delete --name "$RULE_NAME" --server "$resource" \
         --resource-group "$rg" --subscription "$sub" || return 1
       ;;
@@ -429,7 +441,7 @@ STATUS_ONLY=false
 ASSUME_YES=false
 AUTO_LOGIN=true
 VERBOSE=false
-SERVICES=keyvault,sqlserver,documentdb
+SERVICES=keyvault,sqlserver,documentdb,replica
 RULE_NAME=${ANKORED_FW_RULE_NAME:-$(whoami)}
 IP=""
 ENVS=()
@@ -468,12 +480,14 @@ fi
 want_keyvault=false
 want_sqlserver=false
 want_documentdb=false
+want_replica=false
 IFS=, read -ra requested <<<"$SERVICES"
 for service in "${requested[@]}"; do
   case "${service// /}" in
     keyvault) want_keyvault=true ;;
     sqlserver|sql) want_sqlserver=true ;;
     documentdb|docdb) want_documentdb=true ;;
+    replica|sqlreplica) want_replica=true ;;
     *) echo "error: unknown service '$service'" >&2; exit 2 ;;
   esac
 done
@@ -502,6 +516,11 @@ for want in "$want_keyvault" "$want_sqlserver" "$want_documentdb"; do
   if [[ $want == true ]]; then service_count=$((service_count + 1)); fi
 done
 PROGRESS_TOTAL=$((${#reachable[@]} * service_count))
+if [[ $want_replica == true ]]; then
+  for env in "${reachable[@]}"; do
+    if env_has_replica "$env"; then PROGRESS_TOTAL=$((PROGRESS_TOTAL + 1)); fi
+  done
+fi
 
 echo "Public IP $IP   mode $ACTION   rule '$RULE_NAME'"
 echo "Reading $PROGRESS_TOTAL firewalls across ${#reachable[@]} environment(s)..."
@@ -513,6 +532,9 @@ for env in "${ENVS[@]}"; do
     if [[ $want_keyvault == true ]]; then ROWS+=("$env|keyvault|$(kv_for_env "$env")|no access|skip|"); fi
     if [[ $want_sqlserver == true ]]; then ROWS+=("$env|sql|$(sql_for_env "$env")|no access|skip|"); fi
     if [[ $want_documentdb == true ]]; then ROWS+=("$env|documentdb|$(docdb_for_env "$env")|no access|skip|"); fi
+    if [[ $want_replica == true ]] && env_has_replica "$env"; then
+      ROWS+=("$env|replica|$(replica_for_env "$env")|no access|skip|")
+    fi
     continue
   fi
   prev=""
@@ -528,6 +550,10 @@ for env in "${ENVS[@]}"; do
   if [[ $want_documentdb == true ]]; then
     progress checking "$env" documentdb
     survey_documentdb "$env" "$sub" "$rg" "$(docdb_for_env "$env")"
+  fi
+  if [[ $want_replica == true ]] && env_has_replica "$env"; then
+    progress checking "$env" replica
+    survey_sqlserver "$env" "$sub" "$rg" "$(replica_for_env "$env")" replica
   fi
 done
 progress_clear
